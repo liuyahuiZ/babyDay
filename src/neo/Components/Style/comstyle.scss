@@ -1,0 +1,193 @@
+.transi{
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+}
+.transi div{
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+}
+.enter{
+  max-height: 150px;
+  overflow-y: auto;
+}
+.leave{
+  max-height: 0px;
+}
+.show{
+  display: block;
+}
+.hide{
+  margin-top: -200px;
+}
+
+
+.trans img{width: 100%}
+.options div:hover{
+  background: rgba(65, 150, 252,.3);
+  transition: all 300ms;
+}
+.selects:focus{outline:none}
+.trans{
+  transition: all 300ms;
+}
+ul{
+  transition: all 300ms;
+}
+ul li .text:hover{
+  background: #d2eafb;
+  transition: all 300ms;
+}
+ul li .hoverd:hover{
+  color: #fff;
+  transition: all 300ms;
+}
+a{color: #333}
+.radios::after{
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #fff;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%) scale(1);
+  transition: transform .15s cubic-bezier(.71,-.46,.88,.6);
+}
+
+
+
+.row {
+  display: box;             /* OLD - Android 4.4- */
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  box-sizing: border-box;
+}
+.col {
+  box-sizing: border-box;
+}
+
+
+/*flex-length （即项目的排列方向*/
+$length-list:1,2,3,4,5,6,7,8,9;
+@each $direction in $length-list{
+	.flex-#{$direction}{flex:#{$direction};}
+}
+
+/*flex-direction 属性决定主轴的方向（即项目的排列方向*/
+$direction-list:row,row-reverse,column,column-reverse;
+@each $direction in $direction-list{
+	.flex-direction-#{$direction}{flex-direction:#{$direction};}
+}
+/*flex-wrap*/
+$wrap-list:nowrap,wrap,wrap-reverse;
+@each $wrap in $wrap-list{
+	.flex-#{$wrap}{flex-wrap:#{$wrap};}
+}
+/*justify-content 属性定义了项目在主轴上的对齐方式*/
+$justify-content:flex-start,flex-end,center,space-between,space-around;
+@each $justify in $justify-content{
+	.flex-justify-#{$justify}{justify-content:#{$justify};}
+}
+/*align-items 属性定义项目在交叉轴上如何对齐*/
+$align-items:flex-start,flex-end,center,baseline,stretch;
+@each $align in $align-items{
+	.flex-items-#{$align}{align-items:#{$align};}
+}
+/*align-content 属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用*/
+$align-content:flex-start,flex-end,center,space-between,space-around,stretch;
+@each $aligns in $align-content{
+	.flex-content-#{$aligns}{align-content:#{$aligns};}
+}
+/*align-self 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性*/
+$align-self: auto,flex-start,flex-end,center,baseline,stretch;
+@each $alignf in $align-self{
+	.flex-self-#{$alignf}{align-self:#{$alignf};}
+}
+
+.file-loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  z-index: 1000;
+}
+.file-loading .load-words {
+  color: #fff;
+  font-size: 0.3rem;
+  display: inherit;
+}
+.nemo-fileup {
+  width: 100%;
+  &.container{
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    img {
+      display: inline-block;
+      height: 100%;
+      z-index: 100;
+    }
+    .hideenInput {
+      visibility: hidden;
+      position: absolute;
+    }
+    .addFile {
+      position: absolute;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      text-align: center;
+    }
+    .hasdes{
+      .add {
+        display: inline-block;
+        width: 100%;
+        height: 60%;
+        line-height: 100%;
+        transform: translate3d(0%, 20%, 0px);
+        color: #D7D7D7;
+        font-size: 4rem;
+      }
+      .des {
+        display: inline-block;
+        width: 100%;
+        font-size: 0.8rem;
+        position: absolute;
+        bottom: 0.3rem;
+        left: 0;
+        color: #ccc;
+        line-height: 2rem;
+      }
+    }
+    .add {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      line-height: 100%;
+      color: #D7D7D7;
+      font-size: 180%;
+    }
+    .des {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}
+.no-data{
+  width: 100%;
+  text-align: center;
+}

@@ -1,0 +1,23 @@
+.nemo-search-container {
+    position: absolute;
+    width: 90vw;
+    height: 3rem;
+    line-height: 3rem;
+    background: #fff;
+    z-index: 10;
+    left: 5vw;
+    top: 0.5rem;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.30);
+}
+.nemo-search-container .font-end{
+    padding-left: 1.5rem !important;
+}
+.nemo-search-container .font-end .left-text {
+    border-right: 1px solid #ccc;
+    padding-right: 0.5rem;
+}
+.nemo-search-container .font-end i {
+    position: absolute;
+    padding: 0 !important;
+    left: 0.5rem;
+}

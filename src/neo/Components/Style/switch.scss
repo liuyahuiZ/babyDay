@@ -1,0 +1,45 @@
+
+.neo-switch{
+  display: inline-block;
+  position: relative;
+  width: 2.8rem;
+  box-sizing: border-box;
+  border-radius: 1.9rem;
+  background: #999;
+  line-height: 1.5rem;
+  cursor: pointer;
+  transition: all .36s cubic-bezier(.78,.14,.15,.86);
+  font-size: 15px;
+  :after{
+    position: absolute;
+    width: 1.25rem;
+    height: 1.25rem;
+    left: 0.1rem;
+    top: 0.19rem;
+    border-radius: 1.25rem;
+    background-color: #fff;
+    content: " ";
+    cursor: pointer;
+    -webkit-transition: all .36s cubic-bezier(.78,.14,.15,.86);
+    transition: all .36s cubic-bezier(.78,.14,.15,.86);
+    box-sizing: border-box
+  }
+  .switch-inner{
+    color: #fff;
+    font-size: 12px;
+    margin-left: 2rem;
+    margin-right: 0.5rem;
+    display: inline-block;
+  }
+  &.switch-checked{
+    background: rgb(65, 150, 252);
+    :after{
+      left: 100%;
+      margin-left: -1.33rem;
+    }
+    .switch-inner{
+      margin-left: 0.5rem;
+      margin-right: 2rem;
+    }
+  }
+}

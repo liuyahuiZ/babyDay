@@ -1,0 +1,78 @@
+html{
+    touch-action: pan-y;
+    background: #f5f5f5;
+}
+body{
+    margin:0;padding:0;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    width: 100%;
+    height: 100vh;
+}
+.doc{ padding: 0.5rem;}
+.doc h2{font-size: 25px;color: #333;font-weight: 400;
+    font-family: Lato,Helvetica Neue For Number,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif;}
+
+.transf, .transf .pages{
+    /*transition: all 0.2s;*/
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+}
+.doc-enter {
+    transform: translate3d(0%,0%,0);
+    position: absolute;
+    width: 100vw;
+}
+.doc-leave {
+    transform: translate3d(100%,0%,0);
+    position: absolute;
+    width: 100vw;
+}
+.doc-leave-end {
+    transform: translate3d(-100%,0%,0);
+    position: absolute;
+    width: 100vw;
+}
+
+
+.title-enter {
+    transform: translate3d(0%,0%,0);
+    position: absolute;
+    opacity: 1;
+}
+.title-leave {
+    transform: translate3d(100%,0%,0);
+    position: absolute;
+    opacity: 0;
+}
+.title-leave-end {
+    transform: translate3d(-100%,0%,0);
+    position: absolute;
+    opacity: 0;
+}
+
+.pageContent{
+    position: absolute;
+    width: 100vw;
+    min-height: 100vh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.has-header{
+    padding-top: 3rem;
+    height: 100vh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.articles{
+    .image-package{
+        width: 100%!important;
+    }
+    img{
+        width: 100%;
+    }
+}

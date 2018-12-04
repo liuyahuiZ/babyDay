@@ -1,0 +1,26 @@
+.neo-tab {
+  .tab-item:last-child {
+    .tab-span{
+        border-right: 0!important;
+    }
+  }
+  .menu-left{
+    display: box;             /* OLD - Android 4.4- */
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    flex-direction: column;
+    box-direction: normal;
+    box-orient: vertical;
+    -webkit-box-orient: vertical;
+    min-height: 50vh;
+    -webkit-box-lines: multiple;
+    overflow-x: hidden!important;
+    overflow-y: auto!important;
+    .tab-item{
+      width: 100%;
+      min-height: 0.9rem;
+      flex: 0!important;
+    }
+  }
+}

@@ -1,0 +1,288 @@
+$DirectionList:top,left,right,bottom;
+/*a*/
+a{text-decoration: none;color:#333;}
+a:link, a:visited{text-decoration: none;border:0;}
+/*font-size*/
+$font-size-list:0,5,7,8,9,10,12,16,18,20,22,26,30,40,50;
+@each $fonts in $font-size-list{
+	.font-size-#{$fonts}{font-size:#{$fonts*10%};}
+}
+
+@each $fontsr, $size in (small, 1), (normal, 1.2), (big, 1.5), (large, 1.6), (huge, 3){
+	.font-size-#{$fontsr}{font-size:#{$size}rem;}
+}
+$font-weight-list:400,500,600,700;
+@each $fonts in $font-weight-list{
+	.font-weight-#{$fonts}{font-weight:#{$fonts};}
+}
+@each $bgname,$color in (bg-home,#e8f5fa),(bg-bar,#51b0d6),(bg-show,#fff),(bg-del,#ff5757),(bg-top-bf,#fff0f0),(bg-bar-deep, #51afd6),(bg-top-rig,#38c49f),(bg-green,#33cd75),(bg-list-index,#fff7f8),(bg-gray,#d9d9d9),(bg-button-red,#f95b0f),(bg-yellow,#f7d173),(bg-f8b55e,#f8b55e),(bg-f6b45a,#f6b45a),(bg-7ecef4,#7ecef4),(bg-e9f5fa,#e9f5fa),(bg-e3f9ff,#e3f9ff),(bg-eee,#eee),(bg-button-green,#34cf75),(bg-button-gray, #999),(bg-activity,#ee4a41),(bg-activity-status,#ea3f21),(bg-ffa439,#ffa439),
+(bg-f5f5f5,#f5f5f5),(bg-51b0d6,#51b0d6),(bg-ea3a3a,#ea3a3a),(bg-ccc,#ccc),(bg-333,#333),(bg-69cb89,#69cb89),(bg-FECAAD, #FECAAD),(bg-F1F8FD, #F1F8FD),(bg-ffe082,#ffe082),(bg-6E9EFB, #6E9EFB),(bg-151515, #151515),(bg-000, #000),(bg-0D0D0D, #0D0D0D),(bg-1B1B1B,#1B1B1B),(bg-8EBF66,#80EA46),(bg-D1D5D1,#D1D5D1),(bg-101111,#101111),(bg-6bab3d,#6bab3d),(bg-262626,#262626),(bg-DF1B2E,#DF1B2E),(bg-F55936,#F55936){
+ .#{$bgname}{background-color: $color;}
+}
+div{box-sizing:border-box;-webkit-tap-highlight-color:rgba(255,255,255,0)}
+/*text-align*/
+.text-align-center{text-align: center;}
+.text-align-left{text-align: left;}
+.text-align-right{text-align: right;}
+/*text-overflow*/
+.text-overflow{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+/*overflow-hidden*/
+.overflow-hide{overflow: hidden;}
+.overflow-x-scroll{overflow-x: auto;}
+.overflow-y-scroll{overflow-y: auto;}
+/*float*/
+.float-left{float: left;}
+.float-right{float:right;}
+.clear{clear: both;}
+/*zindex*/
+.zindex-10{z-index: 10;}
+.zindex-9{z-index: 9;}
+.zindex-8{z-index: 8;}
+.zindex-6{z-index: 6;}
+.zindex-100{z-index: 100;}
+.zindex-d10{z-index: -10;}
+
+$opacity-list:1,2,3,4,5,6,7,8,9;
+@each $opacity in $opacity-list{
+.opacity-#{$opacity}{opacity:#{$opacity/10};}
+}
+
+/*border_radius*/
+$animal-list:3,6,9,100;
+@each $animal in $animal-list{
+.border-radius-#{$animal}{border-radius:#{$animal}px;}
+}
+$animalr-list:3,6,9,10;
+@each $animal in $animalr-list{
+.border-radius-#{$animal}r{border-radius:#{$animal}rem;}
+}
+.border-radius-round{border-radius: 50%}
+.border-radius-5f{border-radius: 0.5rem;}
+/*border_all*/
+.border-all{border:1px solid;}
+.border-bottom{border-bottom:1px solid;}
+@each $direction in $DirectionList{
+.border-#{$direction}{border-#{$direction}:1px solid;}
+}
+.border-dashed{border: 1px dashed;}
+.border-dashed-bottom{border-bottom:1px dashed #ccc;}
+.border-none{border:none;}
+/*form input*/
+@mixin input-top {float: left;border:0;background: transparent;}
+.input-all{@include input-top;min-height: 40px;outline:none;}
+.input-all-30{@include input-top;min-height: 30px;outline:none;}
+.input-all-50{@include input-top;min-height: 50px;outline:none;}
+.inputs-textarea{width: 100%;min-height: 100px;}
+.scheckbox{width: 15px;height:15px;position: relative;top: 7px;}
+.whiteinput::-webkit-input-placeholder{color: #fff;}
+.greyinput::-webkit-input-placeholder{color: #999;}
+/*images*/
+.images-allhei{height:100vh;}
+.images-height100{height: 100%;}
+.images-con{width: 100%;}
+.images-half{width: 50%;}
+.images-33{width: 33.33%;}
+.images-all{width: 100%;float: left;}
+.images-large{width: 130%;float: left;}
+.images-small{width: 60%;float: left;}
+.images-midel{width: 70%;float: left;}
+/*icons*/ 
+.images-iocn{width: 30px;}
+/*tabsel*/
+.tabsel{display: block;}
+.tabsel-active{background: #e8f5fa;color:#1cb1f6; }
+
+.transform-d-50{
+  transform: translateX(-50%);
+}
+/*line-height*/
+$lineheight-list:10,12,14,18,20,22,25,30,32,35,40,42,50,65,62;
+@each $lineheight in $lineheight-list{
+	.line-height-#{$lineheight}{line-height:#{$lineheight}px;}
+}
+$lineheightr-list:1,2,3,4,5,6,7,8,10,15,20,25,30;
+@each $lineheightr in $lineheightr-list{
+	.line-height-#{$lineheightr}r{line-height:#{$lineheightr*1rem};}
+}
+.nomargin{margin: 0;}
+.margin-auto{margin: 0 auto;}
+/*min-width*/
+$minwidth-list:30,40,50,60,90;
+@each $minwidth in $minwidth-list{
+	.minwidth-#{$minwidth}{min-width:#{$minwidth*1%};}
+}
+/*min-width*/
+$minwidthr-list:1,2,3,4,5,8,10,15,20,25,30;
+@each $minwidthr in $minwidthr-list{
+	.minwidth-#{$minwidthr}{min-width:#{$minwidthr*1r};}
+}
+/*max-width*/
+$maxwidth-list:30,40,50,60,65,70;
+@each $maxwidth in $maxwidth-list{
+	.maxwidth-#{$maxwidth}{max-width:#{$maxwidth*1%};}
+}
+/*width*/
+$width-list:30,40,50,60,65,70,80,90,100;
+@each $width in $width-list{
+	.width-#{$width}{width:#{$width*1%};}
+}
+$widthr-list:1,2,3,4,5,8,10,13,15,20,25,30;
+@each $widthr in $widthr-list{
+	.width-#{$widthr}r{width:#{$widthr*1rem};}
+}
+$minheight-list:20,25,30,40,50,60,90,100;
+@each $minheight in $minheight-list{
+	.minheight-#{$minheight}{min-height:#{$minheight*1vh};}
+}
+$height-list-h:20,25,30,40,50,60,90,100;
+@each $height in $height-list-h{
+	.heighth-#{$height}{height:#{$height*1vh};}
+}
+/*height*/
+$height-list:10,15,20,25,30,35,40,50,65,100,120,150,200,300,500;
+@each $height in $height-list{
+	.height-#{$height}{height:#{$height}px;}
+}
+$heightp-list:10,20,25,30,35,40,50,65,100;
+@each $heightp in $heightp-list{
+	.heightp-#{$heightp}{height:#{$heightp*1%};}
+}
+$heighr-list:1,2,3,4,5,6,8,10,12,13,15,20,25,30;
+@each $heighr in $heighr-list{
+	.heighr-#{$heighr}{height:#{$heighr*1rem};}
+}
+
+$paddingx-list:1,2,3,4,5,8,10,15,20,25,30;
+@each $paddingx in $paddingx-list{
+	.padding-all-#{$paddingx}x{padding:#{$paddingx}px;}
+}
+
+$paddingtp-list:1,2,3,4,5,8;
+@each $paddingtp in $paddingtp-list{
+	.padding-all-#{$paddingtp}{padding:#{$paddingtp*1%};}
+}
+
+$paddingr-list:1,2,3,4,5,8;
+@each $paddingr in $paddingr-list{
+	.padding-all-#{$paddingr}r{padding:#{$paddingr*1rem};}
+}
+
+/*margin*/
+.padding-all{padding: 3%;}
+.padding-all-1r{padding: 1rem!important;}
+$breakpoint-map: (
+    left-1: (p: left,v:1%),left-3: (p: left, v:3%), left-5: (p: left,v:5%),left-d-2r: (p: left,v:-2rem),left-d-5: (p: left,v:5px),left-10: (p: left,v:10%),left-20x: (p: left,v:20px),left-30x: (p: left,v:30px),
+    top-1: (p: top,v:1%),top-p4r: (p: top,v:0.4rem),top-1r: (p: top,v:1rem),top-2: (p: top, v:2%),top-2r: (p: top, v:2rem), top-3: (p: top, v:3%),top-3r: (p: top, v:3rem), top-5: (p: top,v:5%),top-5x: (p: top,v:5px),top-5r: (p: top,v:5rem),top-10: (p: top,v:10%),top-d-10:(p: top,v:-10px),top-60x:(p: top,v:60px),top-120x:(p: top,v:120px),top-300x:(p: top,v:300px),
+    right-1: (p: right,v:1%),right-1r: (p: right,v:1rem),right-1fr: (p: right,v:1.3rem),right-3: (p: right, v:3%), right-5: (p: right,v:5%),right-d-5: (p: right,v:5px),right-10: (p: right,v:10%),right-20x: (p: right,v:20px),right-30x: (p: right,v:30px),
+    bottom-1: (p: bottom,v:1%),bottom-1r: (p: bottom,v:1rem),bottom-2r: (p: bottom, v:2rem),bottom-3: (p: bottom, v:3%), bottom-5: (p: bottom,v:5%),bottom-5x: (p: bottom,v:5px),bottom-10: (p: bottom,v:10%),bottom-60x: (p: bottom,v:60px),bottom-80x: (p: bottom,v:80px),bottom-110x: (p: bottom,v:110px)
+);
+@each $label , $map in $breakpoint-map {
+        .margin-#{$label}{
+           margin-#{ map-get($map, p)} : map-get($map, v);
+        }
+}
+/*padding*/
+@each $label , $map in $breakpoint-map {
+        .padding-#{$label}{
+           padding-#{ map-get($map, p)} : map-get($map, v);
+        }
+}
+@each $label , $map in $breakpoint-map {
+        .#{$label}{
+           #{ map-get($map, p)} : map-get($map, v);
+        }
+}
+.nopadding{padding: 0!important;}
+.small-round{
+        width: 1.5rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
+}
+.middle-round-3{
+        width: 3rem;
+        height: 3rem;
+}
+.middle-round-3f{
+        width: 3.5rem;
+        height: 3.5rem;
+}
+.middle-round{
+        width: 4rem;
+        height: 4rem;
+}
+.middle-round-5{
+        width: 5rem;
+        height: 5rem;
+}
+.middle-round-6{
+        width: 6rem;
+        height: 6rem;
+}
+.middle-round-8{
+        width: 8rem;
+        height: 8rem;
+}
+.middle-round-p{
+        width: 60px;
+        height: 60px;
+}
+/*position_absolute*/
+.absolute{position: absolute;}
+.absolute-left{position: absolute;left:0; top: 0;}
+.absolute-right{position: absolute;right: 0;top: 0;}
+/*position_relative*/
+.relative{position: relative;}
+.fixed{position: fixed;}
+.display-none{display: none;}
+.display-inline-block{display: inline-block;}
+.display-webkit-box{display:-webkit-box;display: box;}
+$position-map: (
+    left-0: (p: left,v:0%),left-1: (p: left,v:1%),left-3: (p: left, v:3%),
+    top-0: (p: top,v:0%),top-1: (p: top,v:25%),top-2: (p: top, v:30%), top-4x: (p: top,v:4px),top-d-6:(p: top,v:-6px),top-d-10:(p: top,v:-10px),
+    right-3: (p: right, v:3%),
+    bottom-0: (p: bottom,v:0%),bottom-1: (p: bottom,v:1%),bottom-3: (p: bottom, v:3%),bottom-10: (p: bottom,v:10%),
+);
+@each $label , $map in $position-map {
+        .#{$label}{
+           #{ map-get($map, p)} : map-get($map, v);
+        }
+}
+
+.bg-C6341F-F87622-180{
+        background: linear-gradient(180deg, #F55936, #F87622 ); /* 标准的语法 */
+}
+
+.bg-C6341F-F55936{
+   background: linear-gradient(66deg, #F55936, #FC912B ); /* 标准的语法 */
+}
+
+.bg-DF1B2E-F55936{
+   background: linear-gradient(126deg,#2971fd, #31B4FF); //39E2FF /* 标准的语法 */
+}
+
+.bg-FC912B-FEBA26{
+   background: linear-gradient(126deg,#FC912B, #FEBA26);  /* 标准的语法 */ 
+}
+
+.text-shadow{      
+   text-shadow:  2px 2px 5px rgba(0,0,0,0.4)
+}
+.box-shadow{      
+   box-shadow:  0px 0px 25px 0px rgba(0, 0, 0, 0.05)
+}
+
+/*text-color*/
+@each $textname,$color in (textclolor-red,#fd5023),(textclolor-black,#000),(textclolor-black-low,#999),(textclolor-333,#333),(textclolor-white,#fff),(textclolor-gray,#ccc),(textclolor-gray-red,#fc9378),(textclolor-blue-white,#66ccf5),(textclolor-blue,#9db9c5),(textclolor-green,#38c49f),(textclolor-666,#666),(textclolor-333,#333),(textclolor-alink,#2391e5),(textcolor-bg,#50afd6),(textcolor-yellow,#ffe082),(textcolor-quan-red,#f1483a),(textcolor-quan-gold,#ffa439),(textcolor-quan-brown,#dbb181),(textcolor-quan-detail,#8b501a),(textcolor-407b99,#407b99),(textcolor-be8116,#be8116),(textcolor-51b0d6,#51b0d6),(textcolor-ea3a3a,#ea3a3a),(textcolor-ff9b27,#ff9b27),(textcolor-2d2d2d,#2d2d2d),(textcolor-0076FF,#0076FF),(textcolor-aeaeae,#aeaeae),(textcolor-8EBF66, #9eea6a),
+(textcolor-79EF44,#79EF44),(textcolor-313132,#313132),(textcolor-DF1B2E,#DF1B2E),(textcolor-F2432A,#F2432A),(textcolor-4698F9,#4698F9),
+(textcolor-fff,#fff),(textcolor-F55936,#F55936){
+  .#{$textname}{color: $color;}
+}
+/*backgound-color*/
+@each $bgname,$color in (bg-home,#e8f5fa),(bg-bar,#51b0d6),(bg-show,#fff),(bg-del,#ff5757),(bg-top-bf,#fff0f0),(bg-bar-deep, #51afd6),(bg-top-rig,#38c49f),(bg-green,#33cd75),(bg-list-index,#fff7f8),(bg-gray,#d9d9d9),(bg-button-red,#f95b0f),(bg-yellow,#f7d173),(bg-f8b55e,#f8b55e),(bg-f6b45a,#f6b45a),(bg-7ecef4,#7ecef4),(bg-e9f5fa,#e9f5fa),(bg-e3f9ff,#e3f9ff),(bg-eee,#eee),(bg-button-green,#34cf75),(bg-button-gray, #999),(bg-activity,#ee4a41),(bg-activity-status,#ea3f21),(bg-ffa439,#ffa439),
+(bg-f5f5f5,#f5f5f5),(bg-51b0d6,#51b0d6),(bg-ea3a3a,#ea3a3a),(bg-ccc,#ccc),(bg-333,#333),(bg-69cb89,#69cb89),(bg-FECAAD, #FECAAD),(bg-F1F8FD, #F1F8FD),(bg-ffe082,#ffe082),(bg-6E9EFB, #6E9EFB),(bg-151515, #151515),(bg-000, #000),(bg-0D0D0D, #0D0D0D),(bg-1B1B1B,#1B1B1B),(bg-8EBF66,#80EA46),(bg-D1D5D1,#D1D5D1),(bg-101111,#101111),(bg-6bab3d,#6bab3d),(bg-262626,#262626),(bg-DF1B2E,#DF1B2E),(bg-F55936,#F55936){
+ .#{$bgname}{background-color: $color;}
+}
+/*border-color*/
+@each $colorname,$color in (fff,#fff),(333,#333),(999,#999),(000,#000),(e5e5e5,#e5e5e5),(333,#333),(666,#666),(ddd,#ddd),(f4e6e3,#f4e6e3),(d9d8d8,#d9d8d8),(bfbfbf,#bfbfbf),(ff8e70,#ff8e70),(6ad1fa,#6ad1fa),(51b0d6,#51b0d6),(f5f5f5,#f5f5f5),(ea3a3a,#ea3a3a),(8EBF66, #8EBF66),(80EA46,#80EA46){
+ .border-color-#{$colorname}{border-color: $color;}
+}

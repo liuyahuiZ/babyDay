@@ -1,0 +1,15 @@
+.menu-tab {
+  height: 100vh;
+  .tab-header{
+    .tab-icon{
+      height: 1.5rem;
+    }
+    .tab-title{
+      line-height: 2rem;
+      font-size: 90%;
+    }
+  }
+  .contain{
+    height: calc(100vh - 3.5rem);   
+  }
+}

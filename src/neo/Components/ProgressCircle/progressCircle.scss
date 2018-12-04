@@ -1,0 +1,87 @@
+.donut {
+    position: relative;
+    width: 100%;
+}
+  
+.donut__copy {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+  
+  .donut__title,
+  .donut__secondary {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .donut__title,
+  .donut__spic {
+    color: lighten(#9CD36D, 5%);
+  }
+
+  
+  .donut__spic {
+    padding-left: 0.6rem;
+    animation: donutTitleFadeRight 800ms 200ms cubic-bezier(.99,.01,.22,.94) forwards;
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  
+  @keyframes donutTitleFadeLeft {
+    from {
+      opacity: 0;
+      transform: translateX(0);
+    }
+    
+    to {
+      opacity: 1;
+      transform: translateX(-10px);
+    }
+  }
+  
+  @keyframes donutTitleFadeRight {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  $radius: 90;
+  $circumference: (3.1415926 * (2 * $radius));
+  
+  .donut__svg {
+    transform: rotate(-90deg);
+    padding: 0.4rem;
+  }
+  
+  .donut__svg__circle--one {
+    stroke-dasharray: $circumference;
+    stroke-dashoffset: $circumference;
+    transition: stroke-dashoffset 1200ms cubic-bezier(.99,.01,.62,.94);
+  }
+  
+  //
+  //
+  .info {
+    font-size: 14px;
+    color: #999;
+    position: absolute;
+    flex: 1;
+    bottom: 40px;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    
+    a {
+      color: #999;
+    }
+  }

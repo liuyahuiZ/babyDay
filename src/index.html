@@ -1,0 +1,61 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=UTF-8>
+  <meta name=viewport content="width=device-width,target-densitydpi=high-dpi,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name=apple-mobile-web-app-capable content=yes>
+  <meta name=apple-mobile-web-app-status-bar-style content=black>
+  <link href=./css/cssbundle.css rel=stylesheet></head>
+  <title>F2E</title>
+</head>
+<body>
+  <div class='scrollcontents' id=root></div>
+  <script type=text/javascript src=./app.bundle.js></script>
+  <script>
+    document.addEventListener('touchstart',function (event) { 
+      if(event.touches.length>1){ 
+        event.preventDefault(); 
+      } 
+    });
+    var lastTouchEnd=0; 
+    document.addEventListener('touchend',function (event) { 
+      var now=(new Date()).getTime(); 
+      if(now-lastTouchEnd<=300){ 
+        event.preventDefault(); 
+      } 
+      lastTouchEnd=now; 
+    },false);
+
+    var overscroll = function(el) {  
+      el.addEventListener('touchstart', function() {  
+        var top = el.scrollTop  
+          , totalScroll = el.scrollHeight  
+          , currentScroll = top + el.offsetHeight;  
+        //If we're at the top or the bottom of the containers  
+        //scroll, push up or down one pixel.  
+        //  
+        //this prevents the scroll from "passing through" to  
+        //the body.  
+        if(top === 0) {  
+          el.scrollTop = 1;  
+        } else if(currentScroll === totalScroll) {  
+          el.scrollTop = top - 1;  
+        }  
+      });  
+      el.addEventListener('touchmove', function(evt) {  
+        //if the content is actually scrollable, i.e. the content is long enough  
+        //that scrolling can occur  
+        if(el.offsetHeight < el.scrollHeight)  
+          evt._isScroller = true;  
+      });  
+    }  
+    overscroll(document.querySelector('.scrollcontents'));  
+    // document.body.addEventListener('touchmove', function(evt) {  
+    //   if(!evt._isScroller) {  
+    //     evt.preventDefault();  
+    //   }  
+    // });
+  </script>
+</body>
+</html>
