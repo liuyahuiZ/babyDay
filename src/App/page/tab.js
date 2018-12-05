@@ -41,6 +41,7 @@ class TabDoc extends Component {
 
     initUser(){
       let babyDayUser = storage.getStorage("babyDayUser")
+      console.log('babyDayUser', babyDayUser);
       if(babyDayUser&&babyDayUser!=='') return;
       let tmp_name = (Date.parse(new Date())/1000);
       let userid = 'babyDayUser-' + tmp_name + '-' + (Math.round(Math.random()*9999));

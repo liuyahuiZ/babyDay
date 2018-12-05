@@ -139,6 +139,31 @@ class DatePicker extends Component {
                     ></DatePickerCom>
                 </div>
             );
+        else if(this.props.date)
+            return(
+                <div className="com-datepick">
+                    <div className="inside" onClick={this.openDatePicker.bind(this)}>
+                        <span>{this.props.btnText||formatViewDate(this.props.startDate, this.props.endDate)}</span>
+                    </div>
+                    <DatePickerCom
+                        query={{
+                            start_date: this.props.startDate,
+                            end_date: this.props.endDate,
+                            date_type: this.props.dateType,
+                            allow_today: this.props.allowToday,
+                            hide_type:true
+                        }}
+                        closeCom={function(){
+                            this.setState({
+                                datePickerVisible:false
+                            })
+                        }.bind(this)}
+                        className={this.props.className}
+                        callback={this.dataPickerCallback.bind(this)}
+                        visible={this.state.datePickerVisible}
+                    ></DatePickerCom>
+                </div>
+            );
         else
             return (
                 <div className="com-datepick">

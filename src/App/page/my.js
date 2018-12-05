@@ -25,12 +25,23 @@ class OcrDoc extends Component {
     constructor(props) {
       super(props);
       this.state = {
-          userInfo: {}
+          userInfo: storage.getStorage('userInfo') || {}
       };
+    }
+
+    componentDidMount(){
+
     }
 
     switchChange(date){
         console.log(date);
+    }
+
+    checkUser(){
+      const { userInfo } = this.state;
+      if(!(userInfo&&userInfo.phone)) {
+        goLink('/Registor');
+      }
     }
 
     submitClick(){
@@ -74,7 +85,8 @@ class OcrDoc extends Component {
         
 
     render() {
-        const userName = storage.getStorage("babyDayUser")
+        const { userInfo } = this.state;
+        const self = this;
         return(
           <section className="bg-f5f5f5">
             <Row justify="center" >
@@ -87,24 +99,29 @@ class OcrDoc extends Component {
                   <Col span={12} className="text-align-right">
                     <Icon iconName={'android-settings '} size={'150%'} iconColor={'#fff'}   />
                   </Col>
-                  <Col className="text-align-center">
-                    <div className="middle-round border-radius-round bg-gray display-inline-block line-height-4r">
-                        <Icon iconName={'social-octocat '} size={'180%'} iconColor={'#fff'} />
+                  <Col className="text-align-center" onClick={()=>{
+                    self.checkUser()
+                  }}>
+                    <div className="middle-round border-radius-round bg-gray display-inline-block line-height-4r overflow-hide">
+                        {userInfo.imgUrl? <img className="width-100" src={`${config.ROOT_URL}files/getTheImage?path=${userInfo.imgUrl}`} />
+                        : <Icon iconName={'social-octocat '} size={'180%'} iconColor={'#fff'} />}
                     </div>
                   </Col>
                   <Col className="text-align-center margin-top-1r">
-                    <span className="textclolor-white">{userName}</span>
+                    <span className="textclolor-white">{userInfo.username || ''}</span>
                   </Col>
                 </Row>
                 </TransAnimal>
               </Col>
               <Col span={24} className="padding-all overflow-hide">
-                <div className="bg-show margin-top-2 border-radius-5f">
+              {userInfo.phone ?  <div className="bg-show margin-top-2 border-radius-5f">
                 <Item
                     leftContent={{text: (<Row><Col span={6}><Icon iconName={'android-list '} size={'150%'} iconColor={'#4698F9'}  /></Col>
                       <Col span={18}>我的记录</Col></Row>), style: {flex: '5'}}} 
                     rightContent={{text: '每天记录', style: {flex: '5'}, className: 'font-size-8 textclolor-gray text-align-right'}}
-                    showRight />
+                    showRight 
+                    onClick={()=>{goLink('/MyRecords')}}
+                    />
                 <Item
                     leftContent={{text: (<Row><Col span={6}><Icon iconName={'arrow-graph-up-right '} size={'150%'} iconColor={'#4698F9'}  /></Col>
                     <Col span={18}>数据展示</Col>
@@ -118,7 +135,18 @@ class OcrDoc extends Component {
                     rightContent={{text: '', style: {flex: '5'}, className: 'font-size-8 textclolor-gray text-align-right'}}
                     showRight 
                     onClick={()=>{goLink('/CreateArticle')}} />
+                </div> :
+                <div className="bg-show margin-top-2 border-radius-5f">
+                <Item
+                    leftContent={{text: (<Row><Col span={6}><Icon iconName={'android-list '} size={'150%'} iconColor={'#4698F9'}  /></Col>
+                      <Col span={18}>Baby信息</Col></Row>), style: {flex: '5'}}} 
+                    rightContent={{text: '去注册', style: {flex: '5'}, className: 'font-size-8 textclolor-gray text-align-right'}}
+                    showRight 
+                    onClick={()=>{goLink('/BindUser')}}
+                    />
                 </div>
+              }
+                
               </Col>
             </Row>
           </section>

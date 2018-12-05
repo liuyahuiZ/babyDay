@@ -11,7 +11,7 @@ const {
     Col,
     MenuTab
   } = Components;
-const { sessions } = utils;
+const { sessions, storage } = utils;
   
 class BabyDay extends BaseView {
     constructor(props) {
@@ -22,6 +22,10 @@ class BabyDay extends BaseView {
       };
     }
 
+    _viewAppear(){
+    }
+
+    
     tabChange(v){
         const self = this;
         self.setState({

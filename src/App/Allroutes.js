@@ -64,6 +64,24 @@ const BabyDay = (location, cb) => {
   },'BabyDay')
 };
 
+const MyRecords = (location, cb) => {
+  require.ensure([], require => {
+      cb(null, require('./page/myRecords').default)
+  },'MyRecords')
+};
+
+const BindUser = (location, cb) => {
+  require.ensure([], require => {
+      cb(null, require('./page/bindUser').default)
+  },'BindUser')
+};
+
+const Registor = (location, cb) => {
+  require.ensure([], require => {
+      cb(null, require('./page/registor').default)
+  },'Registor')
+};
+
 class MyRouter extends Component{
   constructor(props) {
     super(props);
@@ -86,6 +104,10 @@ class MyRouter extends Component{
         <Route path={'Pictures'} getComponent={Pictures} />
         <Route path={'Trans'} getComponent={Trans} />
         <Route path={'BabyDay'} getComponent={BabyDay} />
+        <Route path={'MyRecords'} getComponent={MyRecords} />
+        <Route path={'Registor'} getComponent={Registor} />
+        <Route path={'BindUser'} getComponent={BindUser} />
+        
       </Route>
     </Router>
     )

@@ -37,7 +37,8 @@ class OcrDoc extends Component {
           content: '',
           imgGroup: '',
           dataMap: sessions.getStorage("dataMap") ||[{type: { value: 1, text: '拉拉'}, time: '00:00:00'}],
-          typeArr: []
+          typeArr: [],
+          userInfo: storage.getStorage('userInfo') || {}
       };
     }
 
@@ -160,10 +161,10 @@ class OcrDoc extends Component {
     }
 
     submitClick(){
-        const { dataMap } = this.state;
+        const { dataMap, userInfo } = this.state;
         console.log(dataMap);
         let req = {
-            user: storage.getStorage("babyDayUser"),
+            user: userInfo.phone,
             records: dataMap
         }
         createRecord(req).then((res)=>{
@@ -206,13 +207,13 @@ class OcrDoc extends Component {
         sessions.setStorage("dataMap", newArr);
     }
     addNewType(){
-        const { textContent } = this.state;
+        const { textContent, userInfo } = this.state;
         const self = this;
         addType({
             typeKey: textContent,
             typeValue: textContent,
             remark: '',
-            user: storage.getStorage("babyDayUser")
+            user: userInfo.phone
         }).then((res)=>{
             console.log(res);
             if(res.respHead.code=='0000'){

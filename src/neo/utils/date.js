@@ -103,7 +103,7 @@ export function formatViewDate (startDateStr, endDateStr) {
       // 	return moment(startDateStr).format('MM月DD日'); // 其他单天日期就显示 mm月dd日
       // }
 
-      return moment(startDateStr).format('MM月DD日'); // 其他单天日期就显示 mm月dd日
+      return moment(startDateStr).format('YYYY年MM月DD日'); // 其他单天日期就显示 mm月dd日
 
   } else {
       return `${moment(startDateStr).format('MM月DD日')}-${moment(endDateStr).format('MM月DD日')}`; // 时间区间就显示 mm月dd日－mm月dd日

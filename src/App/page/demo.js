@@ -10,17 +10,15 @@ const {
     Col,
     Icon,
     Buttons,
-    Switch,
     Item,
     Header,
-    PullRefresh,
     Carousel,
     Modal,
     Collapse,
-    Panel, TagRadio
+    Panel, TagRadio, Toaster
   } = Components;
 const { sessions, storage } = utils;
-class SwitchDoc extends BaseView {
+class Demo extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -30,11 +28,14 @@ class SwitchDoc extends BaseView {
           typeArr: [],
           loadText: '加载中',
           selectType: '',
+          dateArr: [],
+          userInfo: storage.getStorage('userInfo') || {}
       };
     }
-
-    _viewAppear(){
-      console.log('indemo');
+    componentWillMount(){
+      
+    }
+    componentDidMount(){
       this.initClander();
       this.getType();
     }
@@ -56,11 +57,11 @@ class SwitchDoc extends BaseView {
       let weekOfday = moment().format('dddd');
       var today = moment().format('YYYY-MM-DD');
       let dataArr=[];
-      let length = 13;
-      for(let i=13;i>=0;i--){
-        let num = i;
+      let length = 14;
+      for(let i=0;i<length;i++){
+        let num = -i;
         let Name = moment().add('days', num).format('dddd')
-        if(num===0){ Name = '今天'} else if(num===1) {Name = '昨天'}
+        if(num===0){ Name = '今天'} else if(num===-1) {Name = '昨天'}
         dataArr.push({
           dateName: Name,
           date: moment().add('days', num).format('DD'),
@@ -69,7 +70,7 @@ class SwitchDoc extends BaseView {
       }
       this.setState({
         dateArr: dataArr,
-        selectDay: dataArr[dataArr.length-1]
+        selectDay: dataArr[0]
       },()=>{
         self.getList()
       });
@@ -79,7 +80,6 @@ class SwitchDoc extends BaseView {
     getType(){
       const self = this;
       findType({}).then((res)=>{
-          console.log(res);
           let newData = {typeValue: '', typeKey: '全部', checked: true};
           if(res.respHead.code=='0000'){
             self.setState({
@@ -93,11 +93,10 @@ class SwitchDoc extends BaseView {
     }
 
     getList(){
-      const { selectDay, selectType } = this.state;
+      const { selectDay, selectType, userInfo } = this.state;
       console.log(selectDay);
-      let babyDayUser = storage.getStorage("babyDayUser");
       const self = this;
-      recordList({user: babyDayUser, dateTime: selectDay.dateTime, typecode: selectType}).then((res)=>{
+      recordList({user: userInfo.phone, dateTime: selectDay.dateTime, typecode: selectType}).then((res)=>{
           console.log(res);
           if(res.respHead.code=='0000'){
             let loadText = '加载中'
@@ -175,7 +174,6 @@ class SwitchDoc extends BaseView {
           </Col></Row>
           </Col>)
       }) : <Col className="text-align-center font-size-small textclolor-white line-height-2r">{loadText}</Col>;
-        console.log(tagTypeArr);
       return(
           <section className="padding-all">
               <div className="heighr-10 border-radius-5f overflow-hide relative">
@@ -206,4 +204,4 @@ class SwitchDoc extends BaseView {
         );
     }
 }
-export default SwitchDoc;
+export default Demo;
