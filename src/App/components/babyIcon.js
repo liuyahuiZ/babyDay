@@ -15,7 +15,8 @@ class BabyIcons extends Component {
     }
 
     format(iconName){
-        const fmArr = {'吃奶': 'boot','拉拉': 'seek','尿尿': 'play','身高': 'boot','体重': 'feed','胀气操': 'food','体温': 'food'}
+        const fmArr = {'吃奶': 'boot','拉拉': 'seek','尿尿': 'seek','身高': 'height','体重': 'weight','胀气操': 'work','体温': 'temperature',
+        '外出': 'out', '辅食': 'food', '换衣服': 'close'}
         return  `icon-${fmArr[iconName]}`
     }
     
@@ -24,7 +25,7 @@ class BabyIcons extends Component {
         const fontSize = { fontSize: size };
         const color = { color: iconColor };
         const padding = iconPadding ? { padding: iconPadding } : {};
-        let pathArr = [1,2,3,4,5,6];
+        let pathArr = [1,2,3,4,5,6,7,8,9];
         const pathDom = pathArr.map((itm, idx)=>{
             return <span className={`path${itm}`} key={`${idx}-ioc`} />
         })

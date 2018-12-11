@@ -64,7 +64,7 @@ class RegistorUser extends Component {
                 self.setState({
                     infoMation: oldInfo,
                     imgSrc: oldInfo.imgUrl,
-                    active: oldInfo.active||'man',
+                    active: oldInfo.sex||'man',
                     phone: oldInfo.phone,
                     height: oldInfo.height,
                     weight: oldInfo.weight,

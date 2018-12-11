@@ -30,7 +30,7 @@ class Demo extends Component {
           loadText: '加载中',
           selectType: '',
           dateArr: [],
-          userInfo: storage.getStorage('userInfo') || {}
+          userInfo: storage.getStorage('userInfo') || {},
       };
     }
     componentWillMount(){

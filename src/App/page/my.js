@@ -6,6 +6,7 @@ import fetch from '../servise/fetch';
 import { UrlSearch, datedifference } from '../utils';
 import { goLink } from '../utils/common';
 import moment from 'moment';
+import { findUser } from '../api/index';
 
 const {
     Buttons,
@@ -31,12 +32,31 @@ class OcrDoc extends Component {
     }
 
     componentDidMount(){
-
+      this.getUserInfo()
     }
 
     switchChange(date){
         console.log(date);
     }
+
+    getUserInfo(){
+      const {userInfo} = this.state;
+      const self = this;
+      findUser({
+          "phone": userInfo.phone,
+      }).then((res)=>{
+          console.log('findUser', res);
+          if(res.respHead.code=='0000') { 
+              let oldInfo = res.respBody[0]
+              self.setState({
+                userInfo: oldInfo
+              })
+              storage.setStorage('userInfo', oldInfo)
+          }
+      }).catch((err)=>{
+          console.log(err);
+      })
+  }
 
     checkUser(){
       const { userInfo } = this.state;
