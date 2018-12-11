@@ -163,8 +163,8 @@ class Demo extends Component {
     render() {
         const self = this;
         const {refreshed, productList, dateArr, selectDay, typeArr, loadText} = this.state;
-        const carouselMap = [{ tabName: 'first', content: (<img alt="text" src="http://47.88.2.72:2016/getphotoPal/2017-4-13/14920521723196.png" />), isActive: true },
-        { tabName: 'second', content: (<img alt="text" src="http://47.88.2.72:2016/getphotoPal/2017-4-13/14920532977814.jpg" />), isActive: false },
+        const carouselMap = [{ tabName: 'first', content: (<img alt="text" src="http://47.88.2.72:2016/getphotoPal/2018-12-11/15445075526162.png" />), isActive: true },
+        { tabName: 'second', content: (<img alt="text" src="http://47.88.2.72:2016/getphotoPal/2018-12-11/15445096249305.png" />), isActive: false },
         { tabName: 'thired', content: (<img alt="text" src="http://47.88.2.72:2016/getphotoPal/2017-3-28/14906636798813.jpg" />), isActive: false }];
         const listMap = [{ tabName: 'first', content: (<div className="padding-all-15x bg-show"><div className="padding-all-10x bg-FECAAD textclolor-gray-red border-radius-100 ">抢100优惠券</div></div>), isActive: true },
         { tabName: 'second', content: (<div className="padding-all-15x bg-show"><div className="padding-all-10x bg-F1F8FD textclolor-alink border-radius-100 ">1元秒杀24期免息</div></div>), isActive: false },
@@ -176,24 +176,22 @@ class Demo extends Component {
 
         
         const productListDom = productList&&productList.length > 0 ? productList.map((itm, idx)=>{
-          return (
-          <Row className="padding-all border-radius-5f padding-bottom-3 margin-bottom-1r bg-show"  key={`${idx}-itm`}>
-            <Col >
+          return (<Col span={12} className="" key={`${idx}-itm`}>
+          <Row className="padding-all border-radius-5f padding-bottom-3 margin-bottom-1r bg-show"  >
+            <Col span={12} className="relative line-height-3r">
+              <BabyIcon iconName={itm.typecode} size={'210%'} />
+            </Col>
+            <Col span={12} className="relative margin-top-3">
+              {itm.time}
+            </Col>
+            <Col span={24}>
               <Row>
-                  <Col span={3} className="relative margin-top-3">
-                    <BabyIcon iconName={itm.typecode} size={'180%'} />
-                  </Col>
-                  <Col span={21}>
-                    <Row>
-                      <Col span={6} className="font-size-12 ">{itm.time}</Col>
-                      <Col span={18} className="text-align-right font-size-8  textclolor-gray">{itm.content}</Col>
-                      <Col className="textclolor-gray">{itm.type.text}</Col>
-                    </Row>
-                  </Col>
+                <Col span={10} className="textclolor-gray">{itm.type.text}</Col>
+                <Col span={14} className="text-align-right font-size-8  textclolor-gray text-overflow">{itm.content}</Col>
               </Row>
             </Col>
-          </Row>)
-        }) : <div className="border-radius-5f bg-show text-align-center line-height-3r textclolor-666">{loadText}</div>;;
+          </Row></Col>)
+        }) : <Col className="border-radius-5f bg-show text-align-center line-height-3r textclolor-666">{loadText}</Col>;;
       const clenderDom = dateArr.length > 0 ? dateArr.map((itm, idx)=>{
           return (<Col key={`${idx}-date`} span={24/7} onClick={()=>{ self.setData(itm); console.log(itm);}}>
           <Row><Col className="font-size-small textclolor-black-low text-align-center">{itm.dateName}</Col>
@@ -226,7 +224,7 @@ class Demo extends Component {
                     }} />
               </Col>
               
-              <Col className="margin-top-1r">{productListDom}</Col>
+              <Col className="margin-top-1r"><Row gutter={8}>{productListDom}</Row></Col>
             </Row>
         </section>
         );

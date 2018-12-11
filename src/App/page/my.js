@@ -32,7 +32,14 @@ class OcrDoc extends Component {
     }
 
     componentDidMount(){
-      this.getUserInfo()
+      let obg = UrlSearch();
+      let userInfo = storage.getStorage('userInfo')
+      if(userInfo&&userInfo!==''&&obg.clean){
+        storage.removeStorage('userInfo');
+        storage.removeAllStorage();
+      }else {
+        this.getUserInfo()
+      }
     }
 
     switchChange(date){
@@ -49,7 +56,7 @@ class OcrDoc extends Component {
           if(res.respHead.code=='0000') { 
               let oldInfo = res.respBody[0]
               self.setState({
-                userInfo: oldInfo
+                userInfo: oldInfo || {}
               })
               storage.setStorage('userInfo', oldInfo)
           }
@@ -113,52 +120,64 @@ class OcrDoc extends Component {
             <Row justify="center" >
               <Col span={24} className="padding-all">
                 <TransAnimal >
-                <Row justify="center" className="padding-all-1r bg-855EF1-7039F8-180 border-radius-5f">
+                <Row  className="padding-all-1r bg-855EF1-7039F8-180 border-radius-5f relative overflow-hide">
                   <Col span={12} className="text-align-left">
-                    <Icon iconName={'quote '} size={'150%'} iconColor={'#fff'}   />
+                    {/* <Icon iconName={'quote '} size={'150%'} iconColor={'#fff'}   /> */}
                   </Col>
-                  <Col span={12} className="text-align-right" onClick={()=>{
+                  <Col span={12} className="text-align-right zindex-10" onClick={()=>{
                     goLink('/UserInfo')
                   }}>
                     <Icon iconName={'android-settings '} size={'150%'} iconColor={'#fff'}   />
                   </Col>
-                  <Col className="text-align-center" onClick={()=>{
+                  <Col className="zindex-10" onClick={()=>{
                     self.checkUser()
                   }}>
-                    <div className="middle-round-6 border-radius-round bg-gray display-inline-block line-height-4r overflow-hide border-all border-color-fff">
-                        {userInfo.imgUrl? <img className="width-100" src={`${config.ROOT_URL}files/getTheImage?path=${userInfo.imgUrl}`} />
-                        : <Icon iconName={'social-octocat '} size={'180%'} iconColor={'#fff'} />}
-                    </div>
+                  <Row>
+                    <Col span={10}>
+                      <div className="middle-round-6 border-radius-round bg-gray display-inline-block line-height-4r overflow-hide border-all border-color-fff">
+                          {userInfo.imgUrl? <img className="width-100" src={`${config.ROOT_URL}files/getTheImage?path=${userInfo.imgUrl}`} />
+                          : <Icon iconName={'social-octocat '} size={'180%'} iconColor={'#fff'} />}
+                      </div>
+                    </Col>
+                    <Col span={14} className="margin-top-3">
+                    { userInfo&&userInfo.username ? 
+                        <Row>
+                          <Col className="textclolor-white font-size-12" >{userInfo.username} <span className="font-size-16"> {datedifference(moment().format('YYYY-MM-DD'), userInfo.birthday) + 1}</span> 天</Col>
+                          <Col className="textclolor-white" > 生日 {userInfo.birthday}</Col>
+                        </Row>
+                      : ''}
+                      </Col>
+                  </Row>
+                    
                   </Col>
-                  <Col className="text-align-center margin-top-1r">
-                    <span className="textclolor-white">{userInfo.username || ''}</span>
-                  </Col>
-                  <Col className="margin-top-1r">
+              
+                  <Col className="margin-top-1r zindex-10">
                   { userInfo&&userInfo.username ? <Row>
-                      <Col className="margin-top-1r">
+                      <Col className="margin-top-1r" span={12}>
                         <Row>
-                          <Col className="textclolor-white" >生日 {userInfo.birthday}</Col>
-                          <Col className="textclolor-white font-size-16" >{datedifference(moment().format('YYYY-MM-DD'), userInfo.birthday) + 1} 天
-                          </Col>
+                          <Col className="textclolor-white " >体重</Col>
+                          <Col className="textclolor-white font-size-16" >{userInfo.weight}</Col>
                         </Row>
                       </Col>
                       <Col className="margin-top-1r" span={12}>
                         <Row>
-                          <Col className="textclolor-white font-size-8" >体重</Col>
-                          <Col className="textclolor-white font-size-12" >{userInfo.weight}</Col>
-                        </Row>
-                      </Col>
-                      <Col className="margin-top-1r" span={12}>
-                        <Row>
-                          <Col className="textclolor-white font-size-8" >身高</Col>
-                          <Col className="textclolor-white font-size-12" >{userInfo.height}</Col>
+                          <Col className="textclolor-white " >身高</Col>
+                          <Col className="textclolor-white font-size-16" >{userInfo.height}</Col>
                         </Row>
                       </Col>
                     </Row> : ''}
                   </Col>
+                  <div className="width-100 opacity-2 heightp-100 absolute-left zindex-9 water"></div>
                 </Row>
                 </TransAnimal>
+                  
               </Col>
+              {/* <div class="animate wave">
+                <div class="w1"></div>
+                <div class="w2"></div>
+                <div class="w3"></div>
+                <div class="w4"></div>
+              </div> */}
               <Col span={24} className="padding-all overflow-hide">
               {userInfo.phone ?  <div className="bg-show margin-top-2 border-radius-5f">
                 <Item

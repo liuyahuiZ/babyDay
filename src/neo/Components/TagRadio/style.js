@@ -10,7 +10,7 @@ export default {
     display: 'inline-block',
     cursor: 'pointer',
     margin: '0px 0.3rem 0 0',
-    padding: '0.2rem 0.5rem',
+    padding: '0.2rem 0rem',
     marginBottom: '0.5rem',
     backgroundColor: '#bfcbd9',
     borderRadius: '2rem',

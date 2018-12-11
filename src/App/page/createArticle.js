@@ -297,16 +297,28 @@ class OcrDoc extends Component {
                         <Col span={2.5} className="line-height-3r">
                             <Icon iconName={'outlet'} size={'150%'} iconColor={'#855EF1'}  />
                         </Col>
-                        <Col span={19} className="padding-top-3">
+                        <Col span={21.5} className="padding-top-3">
                             <TagRadio options={tagTypeArr}
                             checkStyle={{"backgroundColor":"#855EF1","color": '#fff','borderRadius': '0.5rem'}} normalStyle={{"backgroundColor":"#eee","color": '#1a1a1a','borderRadius': '0.5rem'}}
                             onChange={(v, it)=>{
                               console.log(it)
                               self.setValue('type', idx, {text: it.value,value:it.value})
                             }} />
+                            
                         </Col>
-                        <Col span={2.5} className="line-height-3r" onClick={()=>{self.editType()}}> 
-                            <Icon iconName={'android-add-circle '} size={'150%'} iconColor={'#855EF1'}  />
+                        <Col span={2.5} className="line-height-3r">
+                            
+                        </Col>
+                        <Col span={6} className="line-height-3r"> 
+                            <Buttons
+                            text={<Icon iconName={'android-add-circle '} size={'150%'} iconColor={'#fff'}  />}
+                            type={'primary'}
+                            size={'small'}
+                            style={{backgroundColor: '#855EF1', color:'#fff', borderRadius: '3rem'}}
+                            onClick={()=>{
+                                self.editType()
+                            }}
+                            />
                         </Col>
                     </Row>
                     <Row className="border-bottom border-color-f5f5f5">

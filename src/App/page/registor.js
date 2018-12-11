@@ -149,12 +149,12 @@ class RegistorUser extends Component {
                   </Col>
                   <Col span={16}>
                     <Row justify="center">
-                        <Col span={9} onClick={()=>{self.setValue('active','man')}} className={`${active=='man'? 'bg-6E9EFB textclolor-white' : 'bg-F1F8FD textclolor-333 border-all border-color-e5e5e5'} margin-top-p4r font-size-small text-align-center border-radius-6r line-height-25`}>
+                        <Col span={9} onClick={()=>{self.setValue('active','man')}} className={`${active=='man'? 'bg-855EF1 textclolor-white' : 'bg-F1F8FD textclolor-333 border-all border-color-e5e5e5'} margin-top-p4r font-size-small text-align-center border-radius-6r line-height-25`}>
                             <Icon iconName="female" size={'130%'} iconColor={`${active=='man'? '#fff': '#333'}`} />
                             <span>男宝</span>
                         </Col>
                         <Col span={4}> </Col>
-                        <Col span={9} onClick={()=>{self.setValue('active','woman')}} className={`${active=='woman'? 'bg-6E9EFB textclolor-white' : 'bg-F1F8FD textclolor-333 border-all border-color-e5e5e5'} margin-top-p4r font-size-small text-align-center border-radius-6r line-height-25`}>
+                        <Col span={9} onClick={()=>{self.setValue('active','woman')}} className={`${active=='woman'? 'bg-855EF1 textclolor-white' : 'bg-F1F8FD textclolor-333 border-all border-color-e5e5e5'} margin-top-p4r font-size-small text-align-center border-radius-6r line-height-25`}>
                             <Icon iconName="male " size={'130%'} iconColor={`${active=='woman'? '#fff': '#333'}`} />
                             <span>女宝</span>
                         </Col>
@@ -282,6 +282,7 @@ class RegistorUser extends Component {
                   text="注 册"
                   type={'primary'}
                   size={'large'}
+                  style={{backgroundColor: '#855EF1', color:'#fff', borderRadius: '3rem'}}
                   onClick={()=>{
                     this.submitMark()
                   }}

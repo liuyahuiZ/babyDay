@@ -92,3 +92,77 @@ body{
         width: 100%;
     }
 }
+
+@-webkit-keyframes opac{
+    from {
+        opacity: 1;
+        width:0;
+        height:0;
+        top:50%;
+        left:50%;
+    }
+    to {
+        opacity : 0;
+        width:100%;
+        height:100%;
+        top:0;
+        left:0;
+    }
+}
+.animate .w2{
+    -webkit-animation-delay:1s;
+}
+.animate .w3{
+    -webkit-animation-delay:2s;
+}
+.animate .w4{
+    -webkit-animation-delay:3s;
+}
+.wave{
+    width: 22.7rem;
+    height: 22.7rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.wave *{
+    border:1px solid #fff;
+    position:absolute;
+    border-radius:50%;
+    -webkit-animation:opac 4s infinite;
+}
+
+.water {  
+    position: relative;
+}  
+.water:before,.water:after{  
+       content: "";  
+       position: absolute;  
+       width: 100%;  
+       height: 400px;  
+       top: 0;  
+       left: 50%;  
+       background-color: rgba(255, 255, 255, .4); 
+       border-radius: 45%;  
+       transform: translate(-50%, -70%) rotate(0);  
+       animation: rotate 6s linear infinite;  
+       z-index: 10;  
+}  
+       
+.water:after {  
+       border-radius: 47%;  
+       background-color: rgba(255, 255, 255, .9);  
+       transform: translate(-50%, -70%) rotate(0);  
+       animation: rotate 10s linear -5s infinite;  
+       z-index: 20;  
+}  
+  
+@keyframes rotate {  
+    50% {  
+        transform: translate(-50%, -70%) rotate(180deg);  
+    } 100% {  
+        transform: translate(-50%, -70%) rotate(360deg);  
+    }  
+}  
