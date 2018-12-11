@@ -264,6 +264,10 @@ $position-map: (
    background: linear-gradient(126deg,#FC912B, #FEBA26);  /* 标准的语法 */ 
 }
 
+.bg-855EF1-7039F8-180{
+        background: linear-gradient(66deg, rgb(141, 97, 252), rgb(149, 113, 248) ); /* 标准的语法 */
+}
+
 .text-shadow{      
    text-shadow:  2px 2px 5px rgba(0,0,0,0.4)
 }
@@ -273,13 +277,13 @@ $position-map: (
 
 /*text-color*/
 @each $textname,$color in (textclolor-red,#fd5023),(textclolor-black,#000),(textclolor-black-low,#999),(textclolor-333,#333),(textclolor-white,#fff),(textclolor-gray,#ccc),(textclolor-gray-red,#fc9378),(textclolor-blue-white,#66ccf5),(textclolor-blue,#9db9c5),(textclolor-green,#38c49f),(textclolor-666,#666),(textclolor-333,#333),(textclolor-alink,#2391e5),(textcolor-bg,#50afd6),(textcolor-yellow,#ffe082),(textcolor-quan-red,#f1483a),(textcolor-quan-gold,#ffa439),(textcolor-quan-brown,#dbb181),(textcolor-quan-detail,#8b501a),(textcolor-407b99,#407b99),(textcolor-be8116,#be8116),(textcolor-51b0d6,#51b0d6),(textcolor-ea3a3a,#ea3a3a),(textcolor-ff9b27,#ff9b27),(textcolor-2d2d2d,#2d2d2d),(textcolor-0076FF,#0076FF),(textcolor-aeaeae,#aeaeae),(textcolor-8EBF66, #9eea6a),
-(textcolor-79EF44,#79EF44),(textcolor-313132,#313132),(textcolor-DF1B2E,#DF1B2E),(textcolor-F2432A,#F2432A),(textcolor-4698F9,#4698F9),
+(textcolor-79EF44,#79EF44),(textcolor-313132,#313132),(textcolor-DF1B2E,#DF1B2E),(textcolor-F2432A,#F2432A),(textcolor-4698F9,#4698F9),(textcolor-855EF1,#855EF1),(textcolor-7039F8,#7039F8),
 (textcolor-fff,#fff),(textcolor-F55936,#F55936){
   .#{$textname}{color: $color;}
 }
 /*backgound-color*/
 @each $bgname,$color in (bg-home,#e8f5fa),(bg-bar,#51b0d6),(bg-show,#fff),(bg-del,#ff5757),(bg-top-bf,#fff0f0),(bg-bar-deep, #51afd6),(bg-top-rig,#38c49f),(bg-green,#33cd75),(bg-list-index,#fff7f8),(bg-gray,#d9d9d9),(bg-button-red,#f95b0f),(bg-yellow,#f7d173),(bg-f8b55e,#f8b55e),(bg-f6b45a,#f6b45a),(bg-7ecef4,#7ecef4),(bg-e9f5fa,#e9f5fa),(bg-e3f9ff,#e3f9ff),(bg-eee,#eee),(bg-button-green,#34cf75),(bg-button-gray, #999),(bg-activity,#ee4a41),(bg-activity-status,#ea3f21),(bg-ffa439,#ffa439),
-(bg-f5f5f5,#f5f5f5),(bg-51b0d6,#51b0d6),(bg-ea3a3a,#ea3a3a),(bg-ccc,#ccc),(bg-333,#333),(bg-69cb89,#69cb89),(bg-FECAAD, #FECAAD),(bg-F1F8FD, #F1F8FD),(bg-ffe082,#ffe082),(bg-6E9EFB, #6E9EFB),(bg-151515, #151515),(bg-000, #000),(bg-0D0D0D, #0D0D0D),(bg-1B1B1B,#1B1B1B),(bg-8EBF66,#80EA46),(bg-D1D5D1,#D1D5D1),(bg-101111,#101111),(bg-6bab3d,#6bab3d),(bg-262626,#262626),(bg-DF1B2E,#DF1B2E),(bg-F55936,#F55936){
+(bg-f5f5f5,#f5f5f5),(bg-51b0d6,#51b0d6),(bg-ea3a3a,#ea3a3a),(bg-ccc,#ccc),(bg-333,#333),(bg-69cb89,#69cb89),(bg-FECAAD, #FECAAD),(bg-F1F8FD, #F1F8FD),(bg-ffe082,#ffe082),(bg-6E9EFB, #6E9EFB),(bg-151515, #151515),(bg-000, #000),(bg-0D0D0D, #0D0D0D),(bg-1B1B1B,#1B1B1B),(bg-8EBF66,#80EA46),(bg-D1D5D1,#D1D5D1),(bg-101111,#101111),(bg-6bab3d,#6bab3d),(bg-262626,#262626),(bg-DF1B2E,#DF1B2E),(bg-F55936,#F55936),(bg-855EF1,#855EF1),(bg-7039F8,#7039F8){
  .#{$bgname}{background-color: $color;}
 }
 /*border-color*/

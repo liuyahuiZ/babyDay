@@ -9,7 +9,7 @@ export default {
     boxSizing: 'border-box',
     display: 'inline-block',
     cursor: 'pointer',
-    margin: '0px 10px 0 0',
+    margin: '0px 0.3rem 0 0',
     padding: '0.2rem 0.5rem',
     marginBottom: '0.5rem',
     backgroundColor: '#bfcbd9',

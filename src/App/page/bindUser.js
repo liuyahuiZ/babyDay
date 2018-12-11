@@ -69,15 +69,15 @@ class BindUser extends Component {
       const self = this;
         return(
           <section className="bg-f5f5f5">
-            <Row className="padding-all border-radius-5f">
+            <Row className="padding-all ">
                 <Col span={12} className="padding-all-1r line-height-3r">绑定手机号</Col>
-                <Col span={12} className="padding-all-1r text-align-right line-height-3r textcolor-4698F9" onClick={()=>{
+                <Col span={12} className="padding-all-1r text-align-right line-height-3r textcolor-855EF1" onClick={()=>{
                   goLink('/Registor')
-                }}>注册新账号 <Icon iconName={'ios-arrow-right '} size={'120%'} iconColor={'#4698F9'} /></Col>
-                <Col span={24} className="bg-show margin-top-2 padding-all-1r">
+                }}>注册新账号 <Icon iconName={'ios-arrow-right '} size={'120%'} iconColor={'#855EF1'} /></Col>
+                <Col span={24} className="bg-show margin-top-2 padding-all-1r border-radius-5f">
                   <Row className="">
                       <Col span={3} className="padding-top-1 text-align-center">
-                        <Icon iconName={'iphone'} size={'190%'} iconColor={'#4698F9'} /> 
+                        <Icon iconName={'iphone'} size={'190%'} iconColor={'#855EF1'} /> 
                       </Col>
                       <Col span={21}>
                       <Input
@@ -97,6 +97,7 @@ class BindUser extends Component {
                     text="登陆"
                     type={'primary'}
                     size={'large'}
+                    style={{backgroundColor: '#855EF1', color:'#fff', borderRadius: '3rem'}}
                     onClick={()=>{
                       this.bindUser()
                     }}

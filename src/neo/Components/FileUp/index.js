@@ -20,11 +20,11 @@ class FileUp extends React.Component {
     this.getFile = this.getFile.bind(this);
   }
   componentWillReceiveProps(nextProps){
-    // if(nextProps.defaultSrc){
-    //   this.setState({
-    //     defaultSrc: nextProps.defaultSrc
-    //   })
-    // }
+    if(nextProps.defaultSrc){
+      this.setState({
+        defaultSrc: nextProps.defaultSrc
+      })
+    }
   }
   change() {
     const file = this.$$files.files[0];

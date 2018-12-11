@@ -3,8 +3,9 @@ import { Components, utils } from 'neo';
 import { hashHistory } from 'react-router';
 import config from '../config/config';
 import fetch from '../servise/fetch';
-import { UrlSearch } from '../utils';
+import { UrlSearch, datedifference } from '../utils';
 import { goLink } from '../utils/common';
+import moment from 'moment';
 
 const {
     Buttons,
@@ -92,17 +93,19 @@ class OcrDoc extends Component {
             <Row justify="center" >
               <Col span={24} className="padding-all">
                 <TransAnimal >
-                <Row justify="center" className="padding-all-1r bg-6E9EFB border-radius-5f">
+                <Row justify="center" className="padding-all-1r bg-855EF1-7039F8-180 border-radius-5f">
                   <Col span={12} className="text-align-left">
                     <Icon iconName={'quote '} size={'150%'} iconColor={'#fff'}   />
                   </Col>
-                  <Col span={12} className="text-align-right">
+                  <Col span={12} className="text-align-right" onClick={()=>{
+                    goLink('/UserInfo')
+                  }}>
                     <Icon iconName={'android-settings '} size={'150%'} iconColor={'#fff'}   />
                   </Col>
                   <Col className="text-align-center" onClick={()=>{
                     self.checkUser()
                   }}>
-                    <div className="middle-round border-radius-round bg-gray display-inline-block line-height-4r overflow-hide">
+                    <div className="middle-round-6 border-radius-round bg-gray display-inline-block line-height-4r overflow-hide border-all border-color-fff">
                         {userInfo.imgUrl? <img className="width-100" src={`${config.ROOT_URL}files/getTheImage?path=${userInfo.imgUrl}`} />
                         : <Icon iconName={'social-octocat '} size={'180%'} iconColor={'#fff'} />}
                     </div>
@@ -110,26 +113,51 @@ class OcrDoc extends Component {
                   <Col className="text-align-center margin-top-1r">
                     <span className="textclolor-white">{userInfo.username || ''}</span>
                   </Col>
+                  <Col className="margin-top-1r">
+                  { userInfo&&userInfo.username ? <Row>
+                      <Col className="margin-top-1r">
+                        <Row>
+                          <Col className="textclolor-white" >生日 {userInfo.birthday}</Col>
+                          <Col className="textclolor-white font-size-16" >{datedifference(moment().format('YYYY-MM-DD'), userInfo.birthday) + 1} 天
+                          </Col>
+                        </Row>
+                      </Col>
+                      <Col className="margin-top-1r" span={12}>
+                        <Row>
+                          <Col className="textclolor-white font-size-8" >体重</Col>
+                          <Col className="textclolor-white font-size-12" >{userInfo.weight}</Col>
+                        </Row>
+                      </Col>
+                      <Col className="margin-top-1r" span={12}>
+                        <Row>
+                          <Col className="textclolor-white font-size-8" >身高</Col>
+                          <Col className="textclolor-white font-size-12" >{userInfo.height}</Col>
+                        </Row>
+                      </Col>
+                    </Row> : ''}
+                  </Col>
                 </Row>
                 </TransAnimal>
               </Col>
               <Col span={24} className="padding-all overflow-hide">
               {userInfo.phone ?  <div className="bg-show margin-top-2 border-radius-5f">
                 <Item
-                    leftContent={{text: (<Row><Col span={6}><Icon iconName={'android-list '} size={'150%'} iconColor={'#4698F9'}  /></Col>
+                    leftContent={{text: (<Row><Col span={6}><Icon iconName={'android-list '} size={'150%'} iconColor={'#855EF1'}  /></Col>
                       <Col span={18}>我的记录</Col></Row>), style: {flex: '5'}}} 
                     rightContent={{text: '每天记录', style: {flex: '5'}, className: 'font-size-8 textclolor-gray text-align-right'}}
                     showRight 
                     onClick={()=>{goLink('/MyRecords')}}
                     />
                 <Item
-                    leftContent={{text: (<Row><Col span={6}><Icon iconName={'arrow-graph-up-right '} size={'150%'} iconColor={'#4698F9'}  /></Col>
+                    leftContent={{text: (<Row><Col span={6}><Icon iconName={'arrow-graph-up-right '} size={'150%'} iconColor={'#855EF1'}  /></Col>
                     <Col span={18}>数据展示</Col>
                     </Row>), style: {flex: '5'}}} 
                     rightContent={{text: '', style: {flex: '5'}, className: 'font-size-8 textclolor-gray text-align-right'}}
-                    showRight />
+                    showRight 
+                    onClick={()=>{goLink('/MyCharts')}}
+                    />
                 <Item
-                    leftContent={{text: (<Row><Col span={6}><Icon iconName={'compose '} size={'150%'} iconColor={'#4698F9'}  /></Col>
+                    leftContent={{text: (<Row><Col span={6}><Icon iconName={'compose '} size={'150%'} iconColor={'#855EF1'}  /></Col>
                     <Col span={18}>新增记录</Col>
                     </Row>), style: {flex: '5'}}} 
                     rightContent={{text: '', style: {flex: '5'}, className: 'font-size-8 textclolor-gray text-align-right'}}
@@ -138,7 +166,7 @@ class OcrDoc extends Component {
                 </div> :
                 <div className="bg-show margin-top-2 border-radius-5f">
                 <Item
-                    leftContent={{text: (<Row><Col span={6}><Icon iconName={'android-list '} size={'150%'} iconColor={'#4698F9'}  /></Col>
+                    leftContent={{text: (<Row><Col span={6}><Icon iconName={'android-list '} size={'150%'} iconColor={'#855EF1'}  /></Col>
                       <Col span={18}>Baby信息</Col></Row>), style: {flex: '5'}}} 
                     rightContent={{text: '去注册', style: {flex: '5'}, className: 'font-size-8 textclolor-gray text-align-right'}}
                     showRight 

@@ -68,6 +68,22 @@ body{
     -webkit-overflow-scrolling: touch;
 }
 
+.carousel-container{
+    .carousel-dot{
+        width: 0.4rem!important;
+        height: 0.4rem!important;
+        border-radius: 0.5rem!important;
+        &.active{
+            background: transparent;
+            border: 1px solid #fff;
+        }
+        &.default{
+            background: #fff;
+        }
+
+    }
+}
+
 .articles{
     .image-package{
         width: 100%!important;

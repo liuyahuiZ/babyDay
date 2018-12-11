@@ -61,13 +61,13 @@ class TabDoc extends Component {
     render() {
       const { resourceKey } = this.state;
       const tabOptions = [{ tabName: (<Row><Col style={{'height': '0.8rem','top': '-0.5rem'}} className="relative">
-      <Icon iconName={'android-home'} size={'200%'} iconColor={resourceKey== '1' ? '#4698F9' : '#aaa'} />
+      <Icon iconName={'android-home'} size={'200%'} iconColor={resourceKey== '1' ? '#855EF1' : '#aaa'} />
       </Col>
-      <Col className={`${resourceKey== '1' ? 'textcolor-4698F9' : 'textcolor-313132'} font-size-8`}>首页</Col></Row>), iconName: 'ios-home-outline', keyword: '1', content:(<Demo status={resourceKey== '1'} />)},
+      <Col className={`${resourceKey== '1' ? 'textcolor-855EF1' : 'textcolor-313132'} font-size-8`}>首页</Col></Row>), iconName: 'ios-home-outline', keyword: '1', content:(<Demo status={resourceKey== '1'} />)},
         { tabName: (<Row><Col style={{'height': '0.8rem','top': '-0.5rem'}} className="relative">
-        <Icon iconName={'android-person'} size={'200%'} iconColor={resourceKey== '2' ? '#4698F9' : '#aaa'} />
+        <Icon iconName={'android-person'} size={'200%'} iconColor={resourceKey== '2' ? '#855EF1' : '#aaa'} />
       </Col>
-    <Col className={`${resourceKey== '2' ? 'textcolor-4698F9' : 'textcolor-313132'} font-size-8`}>我的</Col></Row>), iconName: 'outlet ', keyword: '2', content:(<My status={resourceKey== '2'} />)}];
+    <Col className={`${resourceKey== '2' ? 'textcolor-855EF1' : 'textcolor-313132'} font-size-8`}>我的</Col></Row>), iconName: 'outlet ', keyword: '2', content:(<My status={resourceKey== '2'} />)}];
       const typeOption = {
         showIcon: false,
         activeColor: '',

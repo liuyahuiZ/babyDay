@@ -23,6 +23,28 @@ export function recordList(reqbody){
     })
 }
 
+export function recordListForType(reqbody){
+    return new Promise((resolve, reject)=>{
+        fetch(config.ROOT_URL+ 'record/recordListForType',{ method: 'POST', data: reqbody})
+        .then(data => {
+            resolve(data)
+        }).catch(error => {
+            reject(error);
+        })
+    })
+}
+
+export function recordListForTime(reqbody){
+    return new Promise((resolve, reject)=>{
+        fetch(config.ROOT_URL+ 'record/recordListForTime',{ method: 'POST', data: reqbody})
+        .then(data => {
+            resolve(data)
+        }).catch(error => {
+            reject(error);
+        })
+    })
+}
+
 export function removeRecord(reqbody){
     return new Promise((resolve, reject)=>{
         fetch(config.ROOT_URL+ 'record/removeRecord',{ method: 'POST', data: reqbody})
@@ -80,6 +102,17 @@ export function userUpdInfo(reqbody){
 export function findUser(reqbody){
     return new Promise((resolve, reject)=>{
         fetch(config.ROOT_URL+ 'users/findUser',{ method: 'POST', data: reqbody})
+        .then(data => {
+            resolve(data)
+        }).catch(error => {
+            reject(error);
+        })
+    })
+}
+
+export function updateUser(reqbody){
+    return new Promise((resolve, reject)=>{
+        fetch(config.ROOT_URL+ 'users/updateUser',{ method: 'POST', data: reqbody})
         .then(data => {
             resolve(data)
         }).catch(error => {

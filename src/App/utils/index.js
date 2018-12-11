@@ -22,3 +22,44 @@ export function UrlSearch() {
     }
     return obj;
  }
+
+ export function arrSetKey(arr, key){
+    let newArr = [];
+    let obj = {};
+    for(let i=0; i< arr.length ;i++){
+        if(newArr.indexOf(arr[i][key]) >= 0){
+            obj[arr[i][key]] = obj[arr[i][key]] + 1;
+        } else{
+            obj[arr[i][key]] = 1;
+            newArr.push(arr[i][key]);
+        }
+    }
+    return {
+        arr: newArr,
+        count: obj
+    }
+}
+
+export function objToArr(obj){
+    let keys = Object.keys(obj);
+    let values = Object.values(obj);
+    let newArr = []
+    for(let i=0;i<keys.length;i++){
+        newArr.push({
+            key: keys[i],
+            value: values[i]
+        })
+    }
+    return newArr;
+}
+
+export  function datedifference(sDate1, sDate2) {    //sDate1和sDate2是2006-12-18格式  
+    let dateSpan = 0;
+    let iDays = 0;
+    sDate1 = Date.parse(sDate1);
+    sDate2 = Date.parse(sDate2);
+    dateSpan = sDate2 - sDate1;
+    dateSpan = Math.abs(dateSpan);
+    iDays = Math.floor(dateSpan / (24 * 3600 * 1000));
+    return iDays
+};

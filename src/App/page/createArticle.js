@@ -7,6 +7,7 @@ import fetch from '../servise/fetch';
 import { UrlSearch } from '../utils';
 import { createRecord, findType, addType, removeType } from '../api/index';
 import moment from 'moment';
+import BabyIcon from '../components/babyIcon';
 
 const {
     Buttons,
@@ -181,7 +182,7 @@ class OcrDoc extends Component {
                 }, 
                 type: 'large'
                 },
-                () => { console.log('nult callback'); });
+                () => { console.log('nult callback'); hashHistory.goBack(); });
                 sessions.removeStorage("dataMap");
             }
         }).catch((err)=>{
@@ -271,42 +272,46 @@ class OcrDoc extends Component {
         const self = this;
         const { dataMap, typeArr } = this.state;
         const tagTypeArr = typeArr&&typeArr.length > 0 ? typeArr.map((itm, idx)=>{
-            return {value: itm.typeValue, text: itm.typeKey, checked: idx==0 ? true: false}
+            return {value: itm.typeValue, text: (<Row><Col><BabyIcon iconName={itm.typeKey} size={'180%'} /></Col>
+            <Col>{itm.typeKey}</Col></Row>), checked: idx==0 ? true: false}
         }) : [];
         return(
-          <section className="bg-f5f5f5">
-            <Header
+          <section className="bg-f5f5f5  padding-all ">
+            {/* <Header
               leftContent={{
                 text: (<Icon iconName={'ios-arrow-back'} size={'180%'} iconColor={'#000'} />), style:{flex: '1.3',width: '23%', paddingLeft: '0.2rem'},
                 onClick: ()=>{hashHistory.goBack();}
               }}
               centerContent={{text: '新增记录', style:{flex: '3.5'} }}
               rightContent={{text:'', style:{flex: '1.5'}}}
-            />
-            <Row className="has-header" justify="center">
-                <Col span={24} className="margin-top-2 padding-all">
+            /> */}
+            <Row>
+                <Col span={24} className="line-height-3r font-size-12">新增记录</Col>
+            </Row>
+            <Row justify="center">
+                <Col span={24} className="margin-top-2">
                 {dataMap&&dataMap.length>0 ? dataMap.map((itm, idx)=>{
                     return (<Row key={`${idx}-k`} className="margin-bottom-1r bg-show padding-all border-radius-5f">
-                    <Col className="text-align-right" > { idx==0 ? '' :  <Icon iconName={'trash-a'} size={'150%'} iconColor={'#4698F9'} onClick={()=>{self.deleteArr(itm, idx)}}  />  }</Col>
+                    <Col className="text-align-right" > { idx==0 ? '' :  <Icon iconName={'trash-a'} size={'150%'} iconColor={'#855EF1'} onClick={()=>{self.deleteArr(itm, idx)}}  />  }</Col>
                     <Col><Row className="border-bottom border-color-f5f5f5">
                         <Col span={2.5} className="line-height-3r">
-                            <Icon iconName={'outlet'} size={'150%'} iconColor={'#4698F9'}  />
+                            <Icon iconName={'outlet'} size={'150%'} iconColor={'#855EF1'}  />
                         </Col>
                         <Col span={19} className="padding-top-3">
                             <TagRadio options={tagTypeArr}
-                            checkStyle={{"backgroundColor":"rgb(65, 150, 252)","color": '#fff'}} normalStyle={{"backgroundColor":"#eee","color": '#1a1a1a'}}
+                            checkStyle={{"backgroundColor":"#855EF1","color": '#fff','borderRadius': '0.5rem'}} normalStyle={{"backgroundColor":"#eee","color": '#1a1a1a','borderRadius': '0.5rem'}}
                             onChange={(v, it)=>{
                               console.log(it)
-                              self.setValue('type', idx, it)
+                              self.setValue('type', idx, {text: it.value,value:it.value})
                             }} />
                         </Col>
                         <Col span={2.5} className="line-height-3r" onClick={()=>{self.editType()}}> 
-                            <Icon iconName={'android-add-circle '} size={'150%'} iconColor={'#4698F9'}  />
+                            <Icon iconName={'android-add-circle '} size={'150%'} iconColor={'#855EF1'}  />
                         </Col>
                     </Row>
                     <Row className="border-bottom border-color-f5f5f5">
                         <Col span={2.5} className="line-height-3r">
-                            <Icon iconName={'ios-time '} size={'150%'} iconColor={'#4698F9'}  />
+                            <Icon iconName={'ios-time '} size={'150%'} iconColor={'#855EF1'}  />
                         </Col>
                         <Col span={21} className="line-height-3r" onClick={()=>{self.selectTime(idx)}}>
                             时间 {itm.time}
@@ -314,7 +319,7 @@ class OcrDoc extends Component {
                     </Row>
                     <Row className="">
                         <Col span={2.5} className="line-height-3r">
-                        <Icon iconName={'compose'} size={'150%'} iconColor={'#4698F9'}  />
+                        <Icon iconName={'compose'} size={'150%'} iconColor={'#855EF1'}  />
                         </Col>
                         <Col span={21} className="padding-top-3">
                         <Textarea
@@ -330,22 +335,16 @@ class OcrDoc extends Component {
                     </Row>
                     </Col></Row>)
                 }) : <div/>}
-                
-                
+                <Row onClick={()=>{self.addArr()}} className="text-align-center bg-show border-radius-5f line-height-3r">
+                <Col><Icon iconName={'android-add '} size={'150%'} iconColor={'#855EF1'}  /> 新增</Col>
+                </Row>
               </Col>
-              <Col span={8}><Buttons
-                text="添加"
-                type={'primary'}
-                size={'large'}
-                onClick={()=>{
-                    self.addArr()
-                }}
-              /></Col>
-              <Col className="margin-top-2r padding-all" >
+              <Col span={18} className="margin-top-2r padding-all" >
                 <Buttons
                   text="提交"
                   type={'primary'}
                   size={'large'}
+                  style={{backgroundColor: '#855EF1', color:'#fff', borderRadius: '3rem'}}
                   onClick={()=>{
                     this.submitClick()
                   }}

@@ -4,6 +4,7 @@ import { hashHistory } from 'react-router';
 import BaseView from '../core/app';
 import { recordList, findType, removeRecord } from '../api/index'
 import moment from 'moment';
+import BabyIcon from '../components/babyIcon';
 
 const {
     Row,
@@ -17,7 +18,7 @@ const {
     Carousel,
     Modal,
     Collapse,
-    Panel, TagRadio, DatePicker, LoadMore
+    Panel, TagRadio, DatePicker, LoadMore, Toaster
   } = Components;
 const { sessions, storage } = utils;
 class MyRecordsDoc extends BaseView {
@@ -191,13 +192,13 @@ class MyRecordsDoc extends BaseView {
             <Col >
               <Row>
                   <Col span={3}>
-                    <Icon iconName={'social-codepen '} size={'180%'} iconColor={'#4698F9'} />
+                    <BabyIcon iconName={itm.typecode} size={'180%'} />
                   </Col>
                   <Col span={21}>
                     <Row>
                       <Col  className="font-size-12 " span={6}>{itm.time}</Col>
                       <Col span={18} className="text-align-right">
-                      <Icon iconName={'trash-a'} size={'150%'} iconColor={'#4698F9'} onClick={()=>{ self.removeConfirm(itm) }}  />
+                      <Icon iconName={'trash-a'} size={'150%'} iconColor={'#855EF1'} onClick={()=>{ self.removeConfirm(itm) }}  />
                       </Col>
                       <Col span={6} className="textclolor-gray">{itm.type.text}</Col>
                       <Col span={18} className="text-align-right font-size-8  textclolor-gray">{itm.content}</Col>
@@ -216,7 +217,7 @@ class MyRecordsDoc extends BaseView {
               </Col>
               <Col className="margin-top-1r">
                 <TagRadio options={tagTypeArr}
-                    checkStyle={{"backgroundColor":"rgb(65, 150, 252)","color": '#fff'}} normalStyle={{"backgroundColor":"#eee","color": '#1a1a1a'}}
+                    checkStyle={{"backgroundColor":"#855EF1","color": '#fff'}} normalStyle={{"backgroundColor":"#eee","color": '#1a1a1a'}}
                     onChange={(v, it)=>{
                       console.log(it)
                       self.setState({

@@ -82,6 +82,18 @@ const Registor = (location, cb) => {
   },'Registor')
 };
 
+const MyChartsPage = (location, cb) => {
+  require.ensure([], require => {
+      cb(null, require('./page/myCharts').default)
+  },'MyChartsPage')
+};
+
+const UserInfo = (location, cb) => {
+  require.ensure([], require => {
+      cb(null, require('./page/userInfo').default)
+  },'UserInfo')
+};
+
 class MyRouter extends Component{
   constructor(props) {
     super(props);
@@ -91,7 +103,7 @@ class MyRouter extends Component{
     <Router history={hashHistory}>
       <Route path={'/'} component={LayOut} >
         {/* <IndexRoute component={ListDoc} /> */}
-        <IndexRedirect to="/Home"/>
+        <IndexRedirect to="/Tab"/>
         <Route path={'Home'} component={Home} />
         <Route path={'Lists'} component={ListDoc} />
         <Route path={'Demo'} getComponent={DomeDoc} />
@@ -107,7 +119,8 @@ class MyRouter extends Component{
         <Route path={'MyRecords'} getComponent={MyRecords} />
         <Route path={'Registor'} getComponent={Registor} />
         <Route path={'BindUser'} getComponent={BindUser} />
-        
+        <Route path={'MyCharts'} getComponent={MyChartsPage} />
+        <Route path={'UserInfo'} getComponent={UserInfo} />
       </Route>
     </Router>
     )

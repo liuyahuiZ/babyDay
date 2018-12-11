@@ -4,6 +4,7 @@ import {Components, Parts, utils} from 'neo';
 import { Router, Route, hashHistory, IndexRedirect, History } from 'react-router';
 import '../style/comment.scss';
 import '../style/common.scss';
+import '../style/font.scss';
 import Static from './static';
 
 const { Button, PageTransition } = Components;
