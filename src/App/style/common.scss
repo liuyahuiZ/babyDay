@@ -171,7 +171,7 @@ $paddingr-list:1,2,3,4,5,8;
 .padding-all{padding: 3%;}
 .padding-all-1r{padding: 1rem!important;}
 $breakpoint-map: (
-    left-1: (p: left,v:1%),left-3: (p: left, v:3%), left-5: (p: left,v:5%),left-d-2r: (p: left,v:-2rem),left-d-5: (p: left,v:5px),left-10: (p: left,v:10%),left-20x: (p: left,v:20px),left-30x: (p: left,v:30px),
+    left-1: (p: left,v:1%),left-3: (p: left, v:3%), left-5: (p: left,v:5%),left-1r: (p: left,v:1rem),left-d-2r: (p: left,v:-2rem),left-d-5: (p: left,v:5px),left-10: (p: left,v:10%),left-20x: (p: left,v:20px),left-30x: (p: left,v:30px),
     top-1: (p: top,v:1%),top-p4r: (p: top,v:0.4rem),top-1r: (p: top,v:1rem),top-2: (p: top, v:2%),top-2r: (p: top, v:2rem), top-3: (p: top, v:3%),top-3r: (p: top, v:3rem), top-5: (p: top,v:5%),top-5x: (p: top,v:5px),top-5r: (p: top,v:5rem),top-10: (p: top,v:10%),top-d-10:(p: top,v:-10px),top-60x:(p: top,v:60px),top-120x:(p: top,v:120px),top-300x:(p: top,v:300px),
     right-1: (p: right,v:1%),right-1r: (p: right,v:1rem),right-1fr: (p: right,v:1.3rem),right-3: (p: right, v:3%), right-5: (p: right,v:5%),right-d-5: (p: right,v:5px),right-10: (p: right,v:10%),right-20x: (p: right,v:20px),right-30x: (p: right,v:30px),
     bottom-1: (p: bottom,v:1%),bottom-1r: (p: bottom,v:1rem),bottom-2r: (p: bottom, v:2rem),bottom-3: (p: bottom, v:3%), bottom-5: (p: bottom,v:5%),bottom-5x: (p: bottom,v:5px),bottom-10: (p: bottom,v:10%),bottom-60x: (p: bottom,v:60px),bottom-80x: (p: bottom,v:80px),bottom-110x: (p: bottom,v:110px)

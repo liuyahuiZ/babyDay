@@ -119,7 +119,7 @@ class Demo extends Component {
       const { selectDay, selectType, userInfo } = this.state;
       console.log(selectDay);
       const self = this;
-      recordList({user: userInfo.phone, dateTime: selectDay.dateTime, typecode: selectType}).then((res)=>{
+      recordList({user: userInfo.phone, dateTime: selectDay.dateTime, typecode: selectType, pageSize: 50}).then((res)=>{
           console.log(res);
           if(res.respHead.code=='0000'){
             let loadText = '加载中'
@@ -176,8 +176,8 @@ class Demo extends Component {
 
         
         const productListDom = productList&&productList.length > 0 ? productList.map((itm, idx)=>{
-          return (<Col span={12} className="" key={`${idx}-itm`}>
-          <Row className="padding-all border-radius-5f padding-bottom-3 margin-bottom-1r bg-show"  >
+          return (<div className={`${idx%2==1? 'padding-left-1' : 'padding-right-1'} width-50 float-left margin-bottom-1r `}>
+          <Row className="padding-all border-radius-5f padding-bottom-3 bg-show "  key={`${idx}-itm`}>
             <Col span={12} className="relative line-height-3r">
               <BabyIcon iconName={itm.typecode} size={'210%'} />
             </Col>
@@ -190,8 +190,8 @@ class Demo extends Component {
                 <Col span={14} className="text-align-right font-size-8  textclolor-gray text-overflow">{itm.content}</Col>
               </Row>
             </Col>
-          </Row></Col>)
-        }) : <Col className="border-radius-5f bg-show text-align-center line-height-3r textclolor-666">{loadText}</Col>;;
+          </Row></div>)
+        }) : <div className="border-radius-5f bg-show text-align-center line-height-3r textclolor-666">{loadText}</div>;
       const clenderDom = dateArr.length > 0 ? dateArr.map((itm, idx)=>{
           return (<Col key={`${idx}-date`} span={24/7} onClick={()=>{ self.setData(itm); console.log(itm);}}>
           <Row><Col className="font-size-small textclolor-black-low text-align-center">{itm.dateName}</Col>
@@ -224,7 +224,9 @@ class Demo extends Component {
                     }} />
               </Col>
               
-              <Col className="margin-top-1r"><Row gutter={8}>{productListDom}</Row></Col>
+              <Col className="margin-top-1r">
+                {productListDom}
+              </Col>
             </Row>
         </section>
         );

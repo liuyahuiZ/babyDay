@@ -37,7 +37,7 @@ class OcrDoc extends Component {
           info: '',
           content: '',
           imgGroup: '',
-          dataMap: sessions.getStorage("dataMap") ||[{type: { value: 1, text: '拉拉'}, time: '00:00:00'}],
+          dataMap: sessions.getStorage("dataMap") ||[{type: { value: '吃奶', text: '吃奶'}, time: '00:00:00'}],
           typeArr: [],
           userInfo: storage.getStorage('userInfo') || {}
       };
@@ -192,7 +192,7 @@ class OcrDoc extends Component {
     addArr(){
         const { dataMap } = this.state;
         let newArr = dataMap;
-        newArr.push({type: { value: 1, text: '拉拉'}});
+        newArr.push({type: { value: '吃奶', text: '吃奶'}});
         this.setState({
             dataMap: newArr
         })
