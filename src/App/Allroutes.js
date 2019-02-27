@@ -94,6 +94,12 @@ const UserInfo = (location, cb) => {
   },'UserInfo')
 };
 
+const Clender = (location, cb) => {
+  require.ensure([], require => {
+      cb(null, require('./page/Clender').default)
+  },'Clender')
+};
+
 class MyRouter extends Component{
   constructor(props) {
     super(props);
@@ -121,6 +127,7 @@ class MyRouter extends Component{
         <Route path={'BindUser'} getComponent={BindUser} />
         <Route path={'MyCharts'} getComponent={MyChartsPage} />
         <Route path={'UserInfo'} getComponent={UserInfo} />
+        <Route path={'Clender'} getComponent={Clender} />
       </Route>
     </Router>
     )

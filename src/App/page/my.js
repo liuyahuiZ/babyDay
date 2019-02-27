@@ -202,6 +202,13 @@ class OcrDoc extends Component {
                     rightContent={{text: '', style: {flex: '5'}, className: 'font-size-8 textclolor-gray text-align-right'}}
                     showRight 
                     onClick={()=>{goLink('/CreateArticle')}} />
+                <Item
+                    leftContent={{text: (<Row><Col span={6}><Icon iconName={'android-calendar'} size={'150%'} iconColor={'#855EF1'}  /></Col>
+                    <Col span={18}>日历</Col>
+                    </Row>), style: {flex: '5'}}} 
+                    rightContent={{text: '', style: {flex: '5'}, className: 'font-size-8 textclolor-gray text-align-right'}}
+                    showRight 
+                    onClick={()=>{goLink('/Clender')}} />
                 </div> :
                 <div className="bg-show margin-top-2 border-radius-5f">
                 <Item
