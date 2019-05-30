@@ -40,15 +40,6 @@ class HomeDoc extends Component {
                 </Col>
             </Row>
             <Row className="padding-all-1r" onClick={()=>{
-                    // this.handleClick('/Lists')
-                    this.handleClick('/BabyDay')
-                }}>
-                <Col span={12} className="padding-all-1r bg-show">BabyDay</Col>
-                <Col span={12} className="padding-all-1r bg-show text-align-right">
-                    <Icon iconName={'cube'} size={'130%'} />
-                </Col>
-            </Row>
-            <Row className="padding-all-1r" onClick={()=>{
                     this.handleClick('/Ocr')
                 }}>
                 <Col span={12} className="padding-all-1r bg-show" >OCR测试</Col>

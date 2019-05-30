@@ -10,18 +10,6 @@ const DomeDoc = (location, cb) => {
   },'DomeDoc')
 };
 
-const OcrDoc = (location, cb) => {
-  require.ensure([], require => {
-      cb(null, require('./page/ocr').default)
-  },'OcrDoc')
-};
-
-const OcrLiveDoc = (location, cb) => {
-  require.ensure([], require => {
-      cb(null, require('./page/ocrLive').default)
-  },'OcrLiveDoc')
-};
-
 const AccessAuthor = (location, cb) => {
   require.ensure([], require => {
       cb(null, require('./page/accessAuthor').default)
@@ -58,10 +46,10 @@ const Trans = (location, cb) => {
   },'Trans')
 };
 
-const BabyDay = (location, cb) => {
+const Music = (location, cb) => {
   require.ensure([], require => {
-      cb(null, require('./page/babyDay').default)
-  },'BabyDay')
+      cb(null, require('./page/music').default)
+  },'Music')
 };
 
 const MyRecords = (location, cb) => {
@@ -113,15 +101,13 @@ class MyRouter extends Component{
         <Route path={'Home'} component={Home} />
         <Route path={'Lists'} component={ListDoc} />
         <Route path={'Demo'} getComponent={DomeDoc} />
-        <Route path={'Ocr'} getComponent={OcrDoc} />
-        <Route path={'OcrLive'} getComponent={OcrLiveDoc} />
         <Route path={'AccessAuthor'} getComponent={AccessAuthor} />
         <Route path={'Tab'} getComponent={TabDoc} />
         <Route path={'CreateArticle'} getComponent={CreateArticleDoc} />
         <Route path={'ArticleDetail'} getComponent={ArticleDetail} />
         <Route path={'Pictures'} getComponent={Pictures} />
         <Route path={'Trans'} getComponent={Trans} />
-        <Route path={'BabyDay'} getComponent={BabyDay} />
+        <Route path={'Music'} getComponent={BabyDay} />
         <Route path={'MyRecords'} getComponent={MyRecords} />
         <Route path={'Registor'} getComponent={Registor} />
         <Route path={'BindUser'} getComponent={BindUser} />
