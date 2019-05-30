@@ -40,7 +40,7 @@ class OcrDoc extends BaseView {
     render() {
         const {article} = this.state;
         const map1 = [1,2,3,4,5,6,7,8,9,2,3,4,5,1,1,2,3,1,13,1,1,2,3,1,1,3,1,1,3,2,1,1,2,3,6,7,7,7,7,8,8,6,6,5,6,65,3,1,1,3,1,2,3,31,12,31,2,213,3,2,2,4,3,3,3,1,3,3,]
-        const pageNo = '2298';
+        const pageNo = '1081';
         // http://img.fox800.xyz/images/book_22_chapter_${pageNo}_${idx}.jpg?x-oss-process=image/resize,m_lfit,w_640,limit_0/auto-orient,1/quality,Q_90
         // 1468
         // http://img.fox800.xyz/images/book_76_chapter_3196_1.jpg?x-oss-process=image/resize,m_lfit,w_640,limit_0/auto-orient,1/quality,Q_90

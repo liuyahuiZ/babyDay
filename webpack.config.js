@@ -43,7 +43,7 @@ module.exports = {
       }
     }),
     new LocalServer({
-      port: 9099
+      port: 9020
     })
   ],
   module: {
