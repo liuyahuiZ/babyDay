@@ -53,6 +53,7 @@ import ProgressCircle from './ProgressCircle';
 import TimeRunner from './TimeRunner';
 import ProgressDrag from './ProgressDrag';
 import PopContainer from './PopContainer';
+import ExModal from './PopContainer/ExModal';
 import RandomNumber from './RandomNumber';
 import Picker from './Picker';
 import Step from './Step';
@@ -124,5 +125,6 @@ export {
   RandomNumber,
   Step,
   Picker,
-  TagRadio
+  TagRadio,
+  ExModal
 };

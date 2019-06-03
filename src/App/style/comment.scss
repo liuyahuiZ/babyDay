@@ -166,3 +166,41 @@ body{
         transform: translate(-50%, -70%) rotate(360deg);  
     }  
 }  
+
+
+.img_bg{
+    background-size:240%!important;
+    background-position: 12% 10% !important;
+    -webkit-filter: blur(10px)!important;
+}
+
+.music-round{
+    background: #333;
+    border:5px solid rgba(0,0,0,0.4);
+    width: 60vw;
+    height: 60vw;
+    border-radius: 50%;
+    background-clip: padding-box;
+    animation: move-the-object 10s linear infinite;
+}
+
+@keyframes move-the-object {  
+    0%   {
+        transform: rotate(0deg);
+    }
+    50%   {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+} 
+
+.lyc-bg{
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255, 255, 255, 0)), to(#fff));
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 0), #fff);
+    background: -o-linear-gradient(top, rgba(255, 255, 255, 0), #fff);
+    background: linear-gradient(top, rgba(255, 255, 255, 0), #fff);
+    
+    box-shadow:  0px 0px 25px 0px #fff;
+}

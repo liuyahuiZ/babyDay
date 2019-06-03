@@ -72,7 +72,7 @@ class Carousel extends Component {
       //  console.log('startX:',touch.pageX)
     }, false);
     content.addEventListener('touchmove', (e) => {
-      e.preventDefault();
+      // e.preventDefault();
       const touch = e.touches[0];
       if (self.state.lock) {
         // console.log(e.pageX, self.state.startX, content.style.marginLeft);
@@ -92,7 +92,7 @@ class Carousel extends Component {
       }
     }, false);
     content.addEventListener("touchend",(e) => {
-      e.preventDefault();
+      // e.preventDefault();
       const arr = self.state.options;
       // const touch = e.touches[0];
       // self.setState({ startX: touch.pageX });
@@ -167,7 +167,7 @@ class Carousel extends Component {
     this.setState({ options: arr });
   }
   render() {
-    const { show, showDots, showHeight, containerStyle,dotDefaultStyle, dotActiveStyle } = this.props;
+    const { show, showDots, showHeight, containerStyle, innerStyle,dotDefaultStyle, dotActiveStyle } = this.props;
     const { options, tabContentStyle } = this.state;
     const containerHead = styles.containerHead;
     const height = showHeight ? { height: `${this.state.height}vh` } : '';
@@ -195,7 +195,7 @@ class Carousel extends Component {
     }) : '';
     const tabContent = this.state.options.map((itm) => {
       const span = (<div
-        style={arrayUtils.merge([styles.tabContentItem, styles.floatLeft, itmWidth, height])}
+        style={arrayUtils.merge([styles.tabContentItem, styles.floatLeft, itmWidth, height, innerStyle])}
         key={itm.tabName}
       > {itm.content}</div>);
       return span;
@@ -208,8 +208,8 @@ class Carousel extends Component {
         >
           {tabHeader}
         </div>
-        <div className="trans" style={arrayUtils.merge([styles.tabContent, styles.floatLeft, itmWidth, height])}>
-          <div className="trans" ref={(r) => { this.$$tabContent = r; }} style={arrayUtils.merge([styles.tabContent, tabContentStyle, styles.floatLeft, contentWidth, height])} >
+        <div className="trans" style={arrayUtils.merge([styles.tabContent, styles.floatLeft, itmWidth, height, innerStyle])}>
+          <div className="trans" ref={(r) => { this.$$tabContent = r; }} style={arrayUtils.merge([styles.tabContent, tabContentStyle, styles.floatLeft, contentWidth, height, innerStyle])} >
             { tabContent}
           </div>
         </div>
@@ -227,6 +227,7 @@ Carousel.propTypes = {
   showDots: PropTypes.bool,
   showHeight: PropTypes.bool,
   containerStyle: PropTypes.shape({}),
+  innerStyle: PropTypes.shape({}),
   dotDefaultStyle: PropTypes.shape({}),
   dotActiveStyle: PropTypes.shape({}),
   show: PropTypes.bool,
@@ -240,6 +241,7 @@ Carousel.defaultProps = {
   showDots: true,
   showHeight: true,
   containerStyle: {},
+  innerStyle: {},
   dotDefaultStyle: {},
   dotActiveStyle: {},
   show: true

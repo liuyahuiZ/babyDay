@@ -1,29 +1,232 @@
 import React , { Component }from 'react';
 import { Components, utils } from 'neo';
 import { hashHistory } from 'react-router';
+import BaseView from '../core/app';
+import { Loading } from '../../neo/Components';
+import MusicPlayer from '../components/music/player'
+import {musicList, getMusic, getLyric} from '../api/music'
+import { UrlSearch } from '../utils';
 
 const {
     Toaster,
     Row,
     Col,
-    MenuTab
+    MenuTab, PopContainer, Icon, Buttons, ProgressDrag, ExModal, Loade
   } = Components;
 const { sessions, storage } = utils;
   
-class Music extends BaseView {
+class Music extends Component {
     constructor(props) {
       super(props);
       this.state = {
         liveInfo: null,
+        musicList: [],
+        theMusic: storage.getStorage('theMusic')||{},
+        nowIndex: storage.getStorage('nowIndex')||0,
+        autoPlay: '',
+        theLyric: storage.getStorage('theLyric')|| {lyric: ''},
       };
+    }
+    // {
+    //   title: '演员', author: '李荣浩', player: '123', file: '13', fileUrl: 'http://m10.music.126.net/20190531154927/3f2ca3e4e642b4a22a3ba7ac07e32551/ymusic/872b/f67a/5bd8/6f59bf9be86b3536e5b30e26040c0400.mp3',
+    //   infoImg: 'http://localhost:2019/files/getFile?path=uploads/14818193753876.png'
+    // },{
+    //   title: '小情歌', author: '苏打绿', player: '123', file: '13', fileUrl: 'http://localhost:2019/files/getFile?path=uploads/music/xiaoqg.mp3',
+    //   infoImg: 'http://localhost:2019/files/getFile?path=uploads/14818159624230.png'
+    // },{
+    //   title: '喜剧之王', author: '李荣浩', player: '123', file: '13', fileUrl: 'http://localhost:2019/files/getFile?path=uploads/music/xjzw.mp3',
+    //   infoImg: 'http://localhost:2019/files/getFile?path=uploads/3.png'
+    // },{
+    //   title: '小幸运', author: '田馥甄', player: '123', file: '13', fileUrl: 'http://localhost:2019/files/getFile?path=uploads/music/litleLuck.mp3',
+    //   infoImg: 'http://localhost:2019/files/getFile?path=uploads/2.png'
+    // },{
+    //   title: '海阔天空', author: 'byong', player: '123', file: '13', fileUrl: 'http://localhost:2019/files/getFile?path=uploads/music/hktk.mp3',
+    //   infoImg: 'http://localhost:2019/files/getFile?path=uploads/bg2.png'
+    // },{
+    //   title: '画风', author: '后弦', player: '123', file: '13', fileUrl: 'http://localhost:2019/files/getFile?path=uploads/music/1467813377.mp3',
+    //   infoImg: 'http://localhost:2019/files/getFile?path=uploads/bg2.png'
+    // }
+
+    componentDidMount(){
+      this.getMusicList();
+    }
+
+    getMusicList(){
+      Loade.show();
+      let obg = UrlSearch();
+      const self = this;
+      musicList({id: obg.id}).then((res)=>{
+        Loade.hide();
+        console.log(res);
+        self.setState({
+          musicList: res.playlist.tracks
+        })
+      }).catch((err)=>{
+        Loade.hide();
+        console.log(err);
+      })
+    }
+
+    getMusicDetail(obg, idx){
+      const self = this;
+      getMusic({id: obg.id}).then((res)=>{
+        console.log(res);
+        obg.fileUrl = res.data[0].url
+        // self.setState({
+        //   musicList: res.playlist.tracks
+        // })
+        self.setMucis(obg,idx)
+      }).catch((err)=>{
+        console.log(err);
+      })
+      getLyric({id: obg.id}).then((res)=>{
+        console.log(res);
+        if(res.code=="200")
+        self.setState({
+          theLyric: res.lrc
+        })
+        storage.setStorage('theLyric', res.lrc);
+      }).catch((err)=>{
+        console.log(err);
+      })
     }
 
     _viewAppear(){
     }
+
+    timeChange(time) {//默认获取的时间是时间戳改成我们常见的时间格式
+      //分钟
+      let minute = time / 60;
+      let minutes = parseInt(minute);
+      if (minutes < 10) {
+          minutes = "0" + minutes;
+      }
+      //秒
+      let second = time % 60;
+      let seconds = parseInt(second);
+      if (seconds < 10) {
+          seconds = "0" + seconds;
+      }
+      let allTime = "" + minutes + "" + ":" + "" + seconds + ""
+      return allTime
+    }
+
+    setMucis(itm,index){
+      console.log(itm,index)
+      this.setState({theMusic: itm});
+      this.setState({nowIndex: index});
+      this.setState({autoPlay: 'autoplay'});
+      storage.setStorage('theMusic', itm);
+      storage.setStorage('nowIndex', index);
+      let o=this;
+      let myVid=document.getElementById("audioPlay");
+      myVid.addEventListener("loadeddata", //歌曲一经完整的加载完毕( 也可以写成上面提到的那些事件类型)
+          function() {
+            let allTime=o.timeChange(myVid.duration)
+            // console.log(myVid.duration,allTime)
+            o.setState({allTime:allTime});
+            o.setState({allString:myVid.duration});
+              setInterval(function() {
+                  let nowTime=o.timeChange(myVid.currentTime);
+                  // console.log(nowTime);
+                  // console.log(myVid.currentTime,myVid.duration)
+                  if(parseInt(myVid.currentTime)==parseInt(myVid.duration)){
+                    o.setNext();
+                  }
+                  o.setState({currentTime:nowTime});
+                  o.setState({currentString:myVid.currentTime});
+              }, 1000);
+          }, false);
+    }
+
+    addListenr(){
+
+    }
+
+    
+    //播放
+    setPlay(){
+      const {autoPlay} = this.state;
+      let myVid=document.getElementById("audioPlay");
+      if(autoPlay==''){
+        this.setState({autoPlay: 'autoPlay'});
+        myVid.play();//audio.play();// 这个就是播放
+      }else{
+        this.setState({autoPlay: ''});
+        myVid.pause();// 这个就是暂停
+      }
+    }
+    //下一首
+    setNext(){
+      const {musicList, nowIndex} = this.state;
+      let next = nowIndex+1
+      if(next >= musicList.length){
+        next=0
+      }
+      this.getMusicDetail(musicList[next],next)
+    }
+    //上一首
+    setPre(){
+      const {musicList, nowIndex} = this.state;
+      let pre = nowIndex-1
+      if(pre<0){
+        pre = musicList.length-1
+      }
+      this.getMusicDetail(musicList[next],next)
+    }
+    // 修改进度
+    changeCurrent(percent){
+      const {allString}= this.state;
+      console.log(allString);
+      let myVid=document.getElementById("audioPlay");
+      myVid.currentTime = parseFloat(allString*(percent/100).toFixed(2));
+      console.log(parseFloat(allString)*(percent/100));
+    }
+    
     render() {
-  
+        const { musicList, autoPlay, theMusic, theLyric, currentTime, currentString, allString, allTime } = this.state;
+        const self = this;
+        const musicListDom = musicList&&musicList.length>0 ?musicList.map((itm, idx)=>{
+          return (<Row className="padding-all border-radius-5f padding-bottom-3 margin-bottom-1r bg-show" key={`${idx}-itm`} onClick={()=>{
+            self.getMusicDetail(itm, idx)
+          }}>
+            <Col span={4}>
+              <div className="middle-round-3 border-radius-3r overflow-hide">
+              <img className="width-100 height-100" alt="text" src={itm.al.picUrl} />
+              </div>
+            </Col>
+            <Col span={20}>
+              <Row>
+                <Col>{itm.name}</Col>
+                <Col>{itm.al.name}</Col>
+              </Row>
+            </Col>
+          </Row>)
+        }): '';
+
         return(
           <section className="bg-f5f5f5">
+            <Row  className="padding-all ">
+              <Col span={12} className="line-height-3r font-size-12">Music</Col>
+              <Col className="overflow-y-scroll heighth-85">
+                {musicListDom}
+              </Col>
+            </Row>
+            <audio src={theMusic&&theMusic.fileUrl} autoPlay={autoPlay} loop="loop" id="audioPlay" >
+            </audio>
+            <MusicPlayer options={{
+              autoPlay: autoPlay,
+              theMusic: theMusic,
+              theLyric: theLyric,
+              currentTime: currentTime, 
+              currentString: currentString, 
+              allString: allString, 
+              allTime: allTime,
+              setPlay: ()=>{self.setPlay()},
+              setNext: ()=>{self.setNext()},
+              setPre: ()=>{self.setPre()},
+              changeCurrent: (p)=>{self.changeCurrent(p)}
+            }} />
             
           </section>
         );

@@ -25,19 +25,19 @@ class Row extends Component {
     const ClassName = `row flex-wrap ${styleDirection} ${styleJustyfy} ${styleAlign} ${styleContent} ${className}`;
     const gutterStyle = gutter ? { margin: `0 ${0 - (gutter / 2)}px` } : '';
     const Children = this.props.children;
-    let child = '';
-    if (Children.length > 1) {
-      child = Children.map((val, idx) => {
-        const key = `${idx}-row`;
-        const dom = React.cloneElement(val, { colgutter: gutter, key });
-        return dom;
-      });
-    } else {
-      child = React.cloneElement(Children, { colgutter: gutter });
-    }
+    // let child = '';
+    // if (Children.length > 1) {
+    //   child = Children.map((val, idx) => {
+    //     const key = `${idx}-row`;
+    //     const dom = React.cloneElement(val, { colgutter: gutter, key });
+    //     return dom;
+    //   });
+    // } else {
+    //   child = React.cloneElement(Children, { colgutter: gutter });
+    // }
     return (
       <div className={ClassName} style={arrayUtils.merge([style, gutterStyle])} onClick={this.handleClick}>
-        {child}
+        {Children}
       </div>
     );
   }

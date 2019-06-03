@@ -46,10 +46,23 @@ const Trans = (location, cb) => {
   },'Trans')
 };
 
+const MusicCategory = (location, cb) => {
+  require.ensure([], require => {
+      cb(null, require('./page/musicCategory').default)
+  },'MusicCategory')
+};
+
 const Music = (location, cb) => {
   require.ensure([], require => {
       cb(null, require('./page/music').default)
   },'Music')
+};
+
+
+const Search = (location, cb) => {
+  require.ensure([], require => {
+      cb(null, require('./page/search').default)
+  },'Search')
 };
 
 const MyRecords = (location, cb) => {
@@ -107,7 +120,9 @@ class MyRouter extends Component{
         <Route path={'ArticleDetail'} getComponent={ArticleDetail} />
         <Route path={'Pictures'} getComponent={Pictures} />
         <Route path={'Trans'} getComponent={Trans} />
-        <Route path={'Music'} getComponent={BabyDay} />
+        <Route path={'Music'} getComponent={Music} />
+        <Route path={'MusicCategory'} getComponent={MusicCategory} />
+        <Route path={'Search'} getComponent={Search} />
         <Route path={'MyRecords'} getComponent={MyRecords} />
         <Route path={'Registor'} getComponent={Registor} />
         <Route path={'BindUser'} getComponent={BindUser} />

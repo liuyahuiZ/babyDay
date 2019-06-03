@@ -12,7 +12,14 @@ module.exports = {
     filename: 'app.bundle.js'
   },
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist')
+    contentBase: path.resolve(__dirname, 'dist'),
+    proxy: {
+      '/music': {
+        target: 'http://localhost:3001/',
+        changeOrigin: true,
+        pathRewrite: {'^/music' : ''}
+      }
+    }
   },
   plugins: [
     // new HtmlWebpackPlugin()
@@ -42,9 +49,9 @@ module.exports = {
         }
       }
     }),
-    new LocalServer({
-      port: 9020
-    })
+    // new LocalServer({
+    //   port: 9020
+    // })
   ],
   module: {
     rules: [
