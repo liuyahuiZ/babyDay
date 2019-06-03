@@ -4,9 +4,10 @@ import { hashHistory } from 'react-router';
 import config from '../config/config';
 import { UrlSearch } from '../utils';
 import BaseView from '../core/app';
-import { musicCategrary } from '../api/music';
+import { musicCategrary, musicList, musicSearch } from '../api/music';
 import { goLink } from '../utils/common';
-import { Input } from '../../neo/Components';
+import Music from './music';
+import MusicSearch from '../components/music/search';
 
 const {
     Buttons,
@@ -21,7 +22,7 @@ const {
     Loade,
     RandomNumber,
     TransAnimal,
-    Search
+    Search, Input
   } = Components;
 const { sessions, storage } = utils;
 
@@ -34,6 +35,7 @@ class MusicCategory extends BaseView {
             loadText: '加载中',
             wxConfig: sessions.getStorage('WXCONFIG') || {},
             hasCard: "LOADING", // LOADING ,  HASCARD, NULLCARD
+            keyWords: ""
         };
     }
     _viewAppear(){
@@ -58,29 +60,69 @@ class MusicCategory extends BaseView {
         })
     }
 
+    getMusicList(obg){
+        Loade.show();
+        const self = this;
+        musicList({id: obg.id}).then((res)=>{
+          Loade.hide();
+          console.log(res);
+          self.setState({
+            musicList: res.playlist.tracks
+          }, ()=>{
+              self.$$theMusic.doPopContainer()
+          })
+          storage.setStorage('musicList', res.playlist.tracks)
+        }).catch((err)=>{
+          Loade.hide();
+          console.log(err);
+        })
+    }
+
+    doSearch(keyWords){
+        const self = this;
+        musicSearch({
+            keywords: keyWords
+        }).then((res)=>{
+            console.log(res);
+            if(res.code=="200"){
+                self.setState({
+                    musicList: res.result.songs
+                },()=>{self.$$theMusic.doPopContainer()})
+            } else{
+                self.setState({
+                    musicList: []
+                })
+            }
+            
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+
     render(){
-        const { categoryList } = this.state;
+        const { categoryList, musicList } = this.state;
         const self = this;
         let cateGoryDom = categoryList&&categoryList.length > 0 ? categoryList.map((itm, idx)=>{
-            return (<Col span={12} className={'padding-all-3x margin-bottom-1r '} key={`${idx}-itm`} onClick={()=>{goLink('/Music', {id: itm.id})}}>
+            return (<Col span={12} className={'padding-all-3x margin-bottom-1r '} key={`${idx}-itm`} onClick={()=>{self.getMusicList(itm)}}>
             <Row className="border-radius-5f padding-bottom-3 bg-show overflow-hide">
                 <Col span={24} className={"font-size-8"}><img alt="text" className="width-100" src={itm.coverImgUrl} /></Col>
                 <Col span={24} className={"font-size-8 text-overflow"}>{itm.name}</Col>
             </Row></Col>)
         }):''
-        return (<section className="bg-f5f5f5 padding-all minheight-100">
-            <Row justify="center">
+        return (<section className="bg-f5f5f5 minheight-100">
+            <Row justify="center" className="padding-all">
                 <Col span={12} className="line-height-3r font-size-12">音乐列表</Col>
-                <Col span={12} className="line-height-3r padding-left-1r heighr-3 border-radius-9r bg-show overflow-hide">
-                    <Row className="overflow-hide" onClick={()=>{goLink('/Search')}}>
-                        <Col span={4}><Icon iconName={'ios-search-strong '} size={'130%'} /></Col>
-                        <Col span={20} className="textclolor-gray font-size-8 ">热搜：网易音乐</Col>
-                    </Row>
+                <Col span={12} className="">
+                    <MusicSearch callBack={(k)=>{
+                        console.log(k);
+                        self.doSearch(k);
+                    }} />
                 </Col>
             </Row>
-            <Row className="margin-top-1r">
+            <Row className=" padding-all heighth-85 overflow-y-scroll">
             {cateGoryDom}
             </Row>
+            <Row><Col><Music musicList={musicList} ref={(r) => { this.$$theMusic = r; }} /></Col></Row>
         </section>)
     }
 }

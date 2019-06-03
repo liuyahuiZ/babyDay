@@ -41,12 +41,12 @@ class MusicPlayer extends Component {
         const { options, MDdisplay, MDaction} = this.state;
         const self = this;
         let theMusic = options.theMusic || {}
-        let background=`url(${theMusic.al&&theMusic.al.picUrl||''}) no-repeat top left scroll`
+        let background=`url(${theMusic.al&&theMusic.al.picUrl||'http://p2.music.126.net/BZNpKSKkPTTv5ZnxdYAdUQ==/5850501371402948.jpg'}) no-repeat top left scroll`
         const carouselMap = [{ tabName: 'first', content: (<Row>
             <Col className="text-align-center ">
               <div className="line-height-3r textclolor-gray">{theMusic.name}</div>
               <div className="music-round display-inline-block overflow-hide margin-top-3r margin-bottom-1r">
-                  <img className="width-100" alt="text" src={theMusic.al&&theMusic.al.picUrl} />
+                  <img className="width-100" alt="text" src={theMusic.al&&theMusic.al.picUrl||'http://p2.music.126.net/BZNpKSKkPTTv5ZnxdYAdUQ==/5850501371402948.jpg'} />
               </div>
               <RundumLine percent={options.currentString/options.allString*100} />
             </Col>
@@ -57,10 +57,11 @@ class MusicPlayer extends Component {
             <div>
                 <Row className="fixed width-100 bg-show heighr-3 bottom-0">
                 <Col className="relative"><Progress percent={options.currentString/options.allString*100} barColor={'#F96C43'} radius={10} style={{height: '2px', position: 'absolute', top: '0'}} /></Col>
-              <Col span={12} className="width-100 line-height-3r padding-left-3 text-overflow" onClick={()=>{
+              <Col span={10} className="width-100 line-height-3r padding-left-3 text-overflow" onClick={()=>{
                 this.showPlayer()
               }}>{theMusic.name||'--'}</Col>
-              <Col span={12}><PlayerCtrl autoPlay={options.autoPlay} options={options} /> </Col>
+              <Col span={10}><PlayerCtrl autoPlay={options.autoPlay} options={options} /> </Col>
+              <Col span={4} onClick={()=>{options.listPop()}} className="line-height-3r"><Icon iconName={"android-list "} size={'170%'} /></Col>
             </Row>
             <ExModal display={MDdisplay} action={MDaction} options={{
                 content: (<div className="relative heighth-100 bg-333">

@@ -46,7 +46,7 @@ class Modal extends Component {
       duration={166}
       enter={`actionSheet-${options.type}enter`}
       leave={`actionSheet-${options.type}leave`}
-    ><div style={styles.cont}>{options.content}</div></PageTransition> : '';
+    ><div style={Object.assign({}, styles.cont, options.containerStyle)}>{options.content}</div></PageTransition> : '';
 
     return (
       <div style={styles.container} className="transi">

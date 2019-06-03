@@ -4,7 +4,7 @@ import { hashHistory } from 'react-router';
 import BaseView from '../core/app';
 import { Loading } from '../../neo/Components';
 import MusicPlayer from '../components/music/player'
-import {musicList, getMusic, getLyric} from '../api/music'
+import { getMusic, getLyric} from '../api/music'
 import { UrlSearch } from '../utils';
 
 const {
@@ -20,12 +20,19 @@ class Music extends Component {
       super(props);
       this.state = {
         liveInfo: null,
-        musicList: [],
+        musicList: this.props.musicList||storage.getStorage('musicList')||[],
         theMusic: storage.getStorage('theMusic')||{},
         nowIndex: storage.getStorage('nowIndex')||0,
         autoPlay: '',
         theLyric: storage.getStorage('theLyric')|| {lyric: ''},
       };
+      this.doPopContainer = this.doPopContainer.bind(this);
+    }
+    componentWillReceiveProps(nextProps){
+      const self = this;
+      this.setState({
+        musicList: nextProps.musicList||{}
+      })
     }
     // {
     //   title: '演员', author: '李荣浩', player: '123', file: '13', fileUrl: 'http://m10.music.126.net/20190531154927/3f2ca3e4e642b4a22a3ba7ac07e32551/ymusic/872b/f67a/5bd8/6f59bf9be86b3536e5b30e26040c0400.mp3',
@@ -48,23 +55,7 @@ class Music extends Component {
     // }
 
     componentDidMount(){
-      this.getMusicList();
-    }
-
-    getMusicList(){
-      Loade.show();
-      let obg = UrlSearch();
-      const self = this;
-      musicList({id: obg.id}).then((res)=>{
-        Loade.hide();
-        console.log(res);
-        self.setState({
-          musicList: res.playlist.tracks
-        })
-      }).catch((err)=>{
-        Loade.hide();
-        console.log(err);
-      })
+      this.addListenr();
     }
 
     getMusicDetail(obg, idx){
@@ -118,6 +109,9 @@ class Music extends Component {
       this.setState({autoPlay: 'autoplay'});
       storage.setStorage('theMusic', itm);
       storage.setStorage('nowIndex', index);
+    }
+
+    addListenr(){
       let o=this;
       let myVid=document.getElementById("audioPlay");
       myVid.addEventListener("loadeddata", //歌曲一经完整的加载完毕( 也可以写成上面提到的那些事件类型)
@@ -137,10 +131,6 @@ class Music extends Component {
                   o.setState({currentString:myVid.currentTime});
               }, 1000);
           }, false);
-    }
-
-    addListenr(){
-
     }
 
     
@@ -182,35 +172,43 @@ class Music extends Component {
       myVid.currentTime = parseFloat(allString*(percent/100).toFixed(2));
       console.log(parseFloat(allString)*(percent/100));
     }
+
+    doPopContainer(){
+      const {musicList} = this.state;
+      const self = this;
+      const musicListDom = musicList&&musicList.length>0 ?musicList.map((itm, idx)=>{
+        return (<Row className="padding-all border-radius-5f padding-bottom-3 margin-bottom-1r bg-show" key={`${idx}-itm`} onClick={()=>{
+          self.getMusicDetail(itm, idx)
+        }}>
+          <Col span={4}>
+            <div className="middle-round-3 border-radius-3r overflow-hide">
+            <img className="width-100 height-100" alt="text" src={(itm.al&&itm.al.picUrl)||itm.album.artist.img1v1Url} />
+            </div>
+          </Col>
+          <Col span={20}>
+            <Row>
+              <Col>{itm.name}</Col>
+              <Col>{itm.al&&itm.al.name}</Col>
+            </Row>
+          </Col>
+        </Row>)
+      }): '';
+      PopContainer.confirm({
+        content: (<Row><Col className="heighth-60 overflow-y-scroll">{musicListDom}</Col></Row>),
+        type: 'bottom',
+        containerStyle: { bottom: '3rem'},
+      });
+    }
     
     render() {
-        const { musicList, autoPlay, theMusic, theLyric, currentTime, currentString, allString, allTime } = this.state;
+        const { autoPlay, theMusic, theLyric, currentTime, currentString, allString, allTime } = this.state;
         const self = this;
-        const musicListDom = musicList&&musicList.length>0 ?musicList.map((itm, idx)=>{
-          return (<Row className="padding-all border-radius-5f padding-bottom-3 margin-bottom-1r bg-show" key={`${idx}-itm`} onClick={()=>{
-            self.getMusicDetail(itm, idx)
-          }}>
-            <Col span={4}>
-              <div className="middle-round-3 border-radius-3r overflow-hide">
-              <img className="width-100 height-100" alt="text" src={itm.al.picUrl} />
-              </div>
-            </Col>
-            <Col span={20}>
-              <Row>
-                <Col>{itm.name}</Col>
-                <Col>{itm.al.name}</Col>
-              </Row>
-            </Col>
-          </Row>)
-        }): '';
+        
 
         return(
           <section className="bg-f5f5f5">
             <Row  className="padding-all ">
-              <Col span={12} className="line-height-3r font-size-12">Music</Col>
-              <Col className="overflow-y-scroll heighth-85">
-                {musicListDom}
-              </Col>
+              <Col span={12} className="line-height-3r font-size-12">Music List</Col>
             </Row>
             <audio src={theMusic&&theMusic.fileUrl} autoPlay={autoPlay} loop="loop" id="audioPlay" >
             </audio>
@@ -225,7 +223,8 @@ class Music extends Component {
               setPlay: ()=>{self.setPlay()},
               setNext: ()=>{self.setNext()},
               setPre: ()=>{self.setPre()},
-              changeCurrent: (p)=>{self.changeCurrent(p)}
+              changeCurrent: (p)=>{self.changeCurrent(p)},
+              listPop: ()=>{self.doPopContainer()}
             }} />
             
           </section>
