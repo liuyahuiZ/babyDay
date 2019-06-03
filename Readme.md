@@ -37,6 +37,9 @@ github地址 https://github.com/liuyahuiZ/server-koa
 
 
 ##### 音乐部分
+
+线上地址：http://www.wetalks.cn/babyDay/#/MusicCategory
+后端api是调用该大神提供的网易音乐接口 https://github.com/Binaryify/NeteaseCloudMusicApi
 <div>
 <img width='40%' src="https://neo-blick.oss-cn-shanghai.aliyuncs.com/3191559551068_.pic.jpg?Expires=1559556499&OSSAccessKeyId=TMP.AgErF1D4xZVX0WaPbjz47kAw5Oe895UN3zeM6Ikoz9D7ee-VWL96ibdWjOrTADAtAhQVlsFM2UEsti4xZZ2aCvH_VdJ-5gIVANYRA3qh0qWTVWV6RE9-XbLr1AFa&Signature=NDlr%2Ftj4ULCIpjOMwndvK3T7Q0c%3D"/>
 <img width='40%' src="https://neo-blick.oss-cn-shanghai.aliyuncs.com/3141559291635_.pic.jpg?Expires=1559556534&OSSAccessKeyId=TMP.AgErF1D4xZVX0WaPbjz47kAw5Oe895UN3zeM6Ikoz9D7ee-VWL96ibdWjOrTADAtAhQVlsFM2UEsti4xZZ2aCvH_VdJ-5gIVANYRA3qh0qWTVWV6RE9-XbLr1AFa&Signature=anR3cylPPdrjmviPETEP3TQvW44%3D"/>
