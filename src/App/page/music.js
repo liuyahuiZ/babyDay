@@ -124,7 +124,7 @@ class Music extends Component {
                   let nowTime=o.timeChange(myVid.currentTime);
                   // console.log(nowTime);
                   // console.log(myVid.currentTime,myVid.duration)
-                  if(parseInt(myVid.currentTime)==parseInt(myVid.duration)){
+                  if(parseInt(myVid.duration)-parseInt(myVid.currentTime)<=2){
                     o.setNext();
                   }
                   o.setState({currentTime:nowTime});
@@ -174,10 +174,10 @@ class Music extends Component {
     }
 
     doPopContainer(){
-      const {musicList} = this.state;
+      const {musicList, theMusic} = this.state;
       const self = this;
       const musicListDom = musicList&&musicList.length>0 ?musicList.map((itm, idx)=>{
-        return (<Row className="padding-all border-radius-5f padding-bottom-3 margin-bottom-1r bg-show" key={`${idx}-itm`} onClick={()=>{
+        return (<Row className="padding-all border-radius-5f border-bottom border-color-e5e5e5 padding-bottom-3 bg-show" key={`${idx}-itm`} onClick={()=>{
           self.getMusicDetail(itm, idx)
         }}>
           <Col span={4}>
@@ -185,18 +185,23 @@ class Music extends Component {
             <img className="width-100 height-100" alt="text" src={(itm.al&&itm.al.picUrl)||itm.album.artist.img1v1Url} />
             </div>
           </Col>
-          <Col span={20}>
+          <Col span={17}>
             <Row>
               <Col>{itm.name}</Col>
               <Col>{itm.al&&itm.al.name}</Col>
             </Row>
           </Col>
+          <Col span={3}>{theMusic.id==itm.id? <Icon iconName={"checkmark-circled "} size={'180%'} iconColor={'#33cd75'} />:""}</Col>
         </Row>)
       }): '';
       PopContainer.confirm({
-        content: (<Row><Col className="heighth-60 overflow-y-scroll">{musicListDom}</Col></Row>),
+        content: (<Row>
+          <Col className="padding-all border-bottom border-color-e5e5e5">列表共有{musicList.length}首</Col>
+          <Col className="heighth-60 overflow-y-scroll">{musicListDom}</Col>
+          <Col className="text-align-center line-height-3r" onClick={()=>{PopContainer.closeAll()}}>关闭</Col>
+          </Row>),
         type: 'bottom',
-        containerStyle: { bottom: '3rem'},
+        containerStyle: {},
       });
     }
     

@@ -106,7 +106,7 @@ class MusicCategory extends BaseView {
             return (<Col span={12} className={'padding-all-3x margin-bottom-1r '} key={`${idx}-itm`} onClick={()=>{self.getMusicList(itm)}}>
             <Row className="border-radius-5f padding-bottom-3 bg-show overflow-hide">
                 <Col span={24} className={"font-size-8"}><img alt="text" className="width-100" src={itm.coverImgUrl} /></Col>
-                <Col span={24} className={"font-size-8 text-overflow"}>{itm.name}</Col>
+                <Col span={24} className={"font-size-8 text-overflow padding-all"}>{itm.name}</Col>
             </Row></Col>)
         }):''
         return (<section className="bg-f5f5f5 minheight-100">
@@ -119,7 +119,7 @@ class MusicCategory extends BaseView {
                     }} />
                 </Col>
             </Row>
-            <Row className=" padding-all heighth-85 overflow-y-scroll">
+            <Row className=" padding-all heighth-80 overflow-y-scroll">
             {cateGoryDom}
             </Row>
             <Row><Col><Music musicList={musicList} ref={(r) => { this.$$theMusic = r; }} /></Col></Row>

@@ -134,7 +134,7 @@ $minheight-list:20,25,30,40,50,60,90,100;
 @each $minheight in $minheight-list{
 	.minheight-#{$minheight}{min-height:#{$minheight*1vh};}
 }
-$height-list-h:20,25,30,40,50,60,85,90,100;
+$height-list-h:20,25,30,40,50,60,80,85,90,100;
 @each $height in $height-list-h{
 	.heighth-#{$height}{height:#{$height*1vh};}
 }

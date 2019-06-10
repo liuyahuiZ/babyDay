@@ -157,7 +157,7 @@ class OcrDoc extends Component {
             </Col>
         </Row>),
       type: 'bottom',
-      containerStyle: { top: '3rem'},
+      containerStyle: {},
       });
     }
 
