@@ -51,7 +51,7 @@ class MusicPlayer extends Component {
               <RundumLine percent={options.currentString/options.allString*100} />
             </Col>
             </Row>), isActive: true },
-        { tabName: 'second', content: (<PlayLyric options={options.theLyric} autoPlay={options.autoPlay} />), isActive: false }];
+        { tabName: 'second', content: (<PlayLyric options={options.theLyric} autoPlay={options.autoPlay} currentTime={options.currentTime} />), isActive: false }];
 
         return(
             <div>

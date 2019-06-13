@@ -162,7 +162,7 @@ class Music extends Component {
       if(pre<0){
         pre = musicList.length-1
       }
-      this.getMusicDetail(musicList[next],next)
+      this.getMusicDetail(musicList[pre],pre)
     }
     // 修改进度
     changeCurrent(percent){

@@ -11,7 +11,7 @@ class RundumLine extends Component {
       super(props);
       this.state = {
         percent: this.props.percent||'',
-        lineArr: 50,
+        lineArr: 40,
         lengthArr: 120,
       };
     }
