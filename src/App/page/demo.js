@@ -2,10 +2,11 @@ import React , { Component }from 'react';
 import { Components,utils } from 'neo';
 import { hashHistory } from 'react-router';
 import BaseView from '../core/app';
-import { recordList, findType } from '../api/index'
+import { recordList, findType, bannerListForCode } from '../api/index'
 import moment from 'moment';
 import {arrSetKey} from '../utils/index'
 import BabyIcon from '../components/babyIcon';
+import ImageBird from '../components/imageBird';
 const {
     Row,
     Col,
@@ -27,6 +28,7 @@ class Demo extends Component {
           refreshed: false,
           productList: [],
           typeArr: [],
+          bannerList: [],
           loadText: '加载中',
           selectType: '',
           dateArr: [],
@@ -38,12 +40,26 @@ class Demo extends Component {
     }
     componentDidMount(){
       this.initClander();
+      this.getBannerList();
     }
 
     setData(itm){
       this.setState({'selectDay': itm},()=>{
         this.getList();
       });
+    }
+
+    getBannerList(){
+      bannerListForCode({code:'pic'}).then((res)=>{
+        console.log('res',res)
+        if(res.code=='0000'){
+          this.setState({
+            bannerList: res.data.records
+          })
+        }
+      }).catch((err)=>{
+        console.log('err', err);
+      })
     }
 
     initClander(){
@@ -88,7 +104,7 @@ class Demo extends Component {
           let newData = {typeValue: '全部', typeKey: '', checked: true};
           if(res.respHead.code=='0000'){
             self.setState({
-                typeArr: [newData, ...res.respBody]
+                typeArr: [newData, ...res.data]
             },()=>{self.resetType()})
           }
       }).catch((err)=>{
@@ -123,11 +139,11 @@ class Demo extends Component {
           console.log(res);
           if(res.respHead.code=='0000'){
             let loadText = '加载中'
-            if(res.respBody.record.length==0){
+            if(res.data.record.length==0){
               loadText = '暂无数据'
             }
             self.setState({
-              productList: res.respBody.record,
+              productList: res.data.record,
               loadText: loadText
             },()=>{
               if(status!=='noRenderType'){
@@ -162,13 +178,10 @@ class Demo extends Component {
   
     render() {
         const self = this;
-        const {refreshed, productList, dateArr, selectDay, typeArr, loadText} = this.state;
-        const carouselMap = [{ tabName: 'first', content: (<img alt="text" src="http://47.88.2.72:2016/getphotoPal/2018-12-11/15445075526162.png" />), isActive: true },
-        { tabName: 'second', content: (<img alt="text" src="http://47.88.2.72:2016/getphotoPal/2018-12-11/15445096249305.png" />), isActive: false },
-        { tabName: 'thired', content: (<img alt="text" src="http://47.88.2.72:2016/getphotoPal/2017-3-28/14906636798813.jpg" />), isActive: false }];
-        const listMap = [{ tabName: 'first', content: (<div className="padding-all-15x bg-show"><div className="padding-all-10x bg-FECAAD textclolor-gray-red border-radius-100 ">抢100优惠券</div></div>), isActive: true },
-        { tabName: 'second', content: (<div className="padding-all-15x bg-show"><div className="padding-all-10x bg-F1F8FD textclolor-alink border-radius-100 ">1元秒杀24期免息</div></div>), isActive: false },
-        { tabName: 'thired', content: (<div className="padding-all-15x bg-show"><div className="padding-all-10x bg-F1F8FD textclolor-alink border-radius-100 ">小白卡满1000减30</div></div>), isActive: false }]
+        const {refreshed, productList, dateArr, selectDay, typeArr, loadText, bannerList} = this.state;
+        const carouselMap = bannerList&&bannerList.length>0? bannerList.map((itm, idx)=>{
+          return { tabName: `${idx}-bn`, content: (<ImageBird imgName={itm.imgGroup}  />), isActive: idx == 0 ? true : false }
+        }) : [];
 
         const tagTypeArr = typeArr&&typeArr.length > 0 ? typeArr.map((itm, idx)=>{
           return {value: itm.typeKey, text: itm.typeValue, checked: idx==0 ? true: false}

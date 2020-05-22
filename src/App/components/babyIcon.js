@@ -17,7 +17,7 @@ class BabyIcons extends Component {
     format(iconName){
         const fmArr = {'吃奶': 'boot','拉拉': 'seek','尿尿': 'seek','身高': 'height','体重': 'weight','胀气操': 'work','体温': 'temperature',
         '外出': 'out', '辅食': 'food', '换衣服': 'close'}
-        return  `icon-${fmArr[iconName]}`
+        return  `icon-${fmArr[iconName]||'boot'}`
     }
     
     render() {

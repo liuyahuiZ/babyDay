@@ -84,7 +84,7 @@ class ListDoc extends BaseView {
           wx.onMenuShareTimeline({
               title: 'shareTest', // 分享标题
               link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-              imgUrl: 'http://47.88.2.72:2016/getphotoPal/2017-4-13/14920521723196.png', // 分享图标
+              imgUrl: 'http://47.254.39.213:8000/oldNode/getphotoPal/2017-4-13/14920521723196.png', // 分享图标
               success: function () { 
                   // 用户确认分享后执行的回调函数
                   alert('分享成功')
@@ -98,7 +98,7 @@ class ListDoc extends BaseView {
               title: 'shareTest', // 分享标题
               desc: 'shareTestshareTestshareTest,', // 分享描述
               link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-              imgUrl: 'http://47.88.2.72:2016/getphotoPal/2017-4-13/14920521723196.png', // 分享图标
+              imgUrl: 'http://47.254.39.213:8000/oldNode/getphotoPal/2017-4-13/14920521723196.png', // 分享图标
               type: 'link', // 分享类型,music、video或link，不填默认为link
               dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
               success: function () { 

@@ -172,7 +172,7 @@ class OcrDoc extends Component {
               <Row className=" margin-top-2r" justify="center" >
                 <Col span={24} className="" >
                   <img alt="text" className="border-radius-6" style={{boxShadow: '0 10px 20px rgba(0, 0, 0, 0.7)'}} 
-                  src="http://47.88.2.72:2016/getphotoPal/2017-3-28/14906636798813.jpg" />
+                  src="/oldNode/getphotoPal/2017-3-28/14906636798813.jpg" />
                   <span> 123 789 789 78877 8777 </span>
                 </Col>
               </Row>

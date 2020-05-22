@@ -60,7 +60,7 @@ class MyCharts extends BaseView {
       findType({}).then((res)=>{
           if(res.respHead.code=='0000'){
             self.setState({
-                typeArr: res.respBody
+                typeArr: res.data
             })
           }
       }).catch((err)=>{
@@ -81,7 +81,7 @@ class MyCharts extends BaseView {
         console.log(res);
         if(res.respHead.code=='0000'){
           self.setState({
-            lineDate: res.respBody.record,
+            lineDate: res.data.record,
           })
         }
       }).catch((err=>{
@@ -102,9 +102,9 @@ class MyCharts extends BaseView {
       }).then((res)=>{
         if(res.respHead.code=='0000'){
           self.setState({
-              productList: res.respBody.record,
+              productList: res.data.record,
           }, ()=>{
-            let data = arrSetKey(res.respBody.record, 'typecode');
+            let data = arrSetKey(res.data.record, 'typecode');
             // console.log(data);
             let newData = objToArr(data.count);
             // console.log('newData',newData)

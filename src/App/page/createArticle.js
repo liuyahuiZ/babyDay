@@ -62,7 +62,7 @@ class OcrDoc extends Component {
             console.log(res);
             if(res.respHead.code=='0000'){
                 self.setState({
-                    typeArr: res.respBody
+                    typeArr: res.data
                 })
             }
         }).catch((err)=>{

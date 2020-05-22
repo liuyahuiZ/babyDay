@@ -49,9 +49,9 @@ class BindUser extends Component {
       }).then((res)=>{
         console.log(res);
         if(res.respHead.code=='0000'){
-          if(res.respBody&&res.respBody.length>0){
+          if(res.data&&res.data.length>0){
             Toaster.toaster({ type: 'normal', position: 'top', content: '绑定成功', time: 5000 });
-            storage.setStorage('userInfo', res.respBody[0]);
+            storage.setStorage('userInfo', res.data[0]);
             goLink('/Tab')
           }else{
             Toaster.toaster({ type: 'normal', position: 'top', content: '该账号未注册', time: 5000 });

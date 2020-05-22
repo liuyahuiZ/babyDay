@@ -34,7 +34,7 @@ module.exports = {
     new webpack.optimize.SplitChunksPlugin({
       chunks: "all",
       minSize: 20000,
-      minChunks: 2,
+      minChunks: 5,
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
       name: true,
@@ -43,7 +43,7 @@ module.exports = {
             names: ['vendor'],
             filename: 'vendor.js',
             chunks: "all",
-            minChunks: 5
+            minChunks: 30
         }
       }
     }),

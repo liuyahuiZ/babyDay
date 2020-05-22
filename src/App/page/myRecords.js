@@ -76,7 +76,7 @@ class MyRecordsDoc extends BaseView {
           let newData = {typeValue: '', typeKey: '全部', checked: true};
           if(res.respHead.code=='0000'){
             self.setState({
-                typeArr: [newData, ...res.respBody]
+                typeArr: [newData, ...res.data]
             })
           }
       }).catch((err)=>{
@@ -101,14 +101,16 @@ class MyRecordsDoc extends BaseView {
           console.log(res);
           let loadText = '加载中'
           if(res.respHead.code=='0000'){
-            products = products.concat(res.respBody.record);
-            if( products.length >= res.respBody.pageInfo.allCount ) {
+
+            products.push(...res.data.record);
+            //products = products.concat(res.data.record);
+            if( products.length >= res.data.pageInfo.allCount ) {
                 enableLoad = 'loaded'
             } else{
                 page = page + 1;
                 enableLoad = 'canload';
             }
-            if(res.respBody.record.length==0){
+            if(res.data.record.length==0){
                 loadText = '暂无数据'
             }
             self.setState({

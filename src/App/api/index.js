@@ -1,4 +1,4 @@
-import fetch from '../servise/fetch';
+import fetch from '../servise/request';
 import config from '../config/config';
 
 export function createRecord(reqbody){
@@ -113,6 +113,17 @@ export function findUser(reqbody){
 export function updateUser(reqbody){
     return new Promise((resolve, reject)=>{
         fetch(config.ROOT_URL+ 'users/updateUser',{ method: 'POST', data: reqbody})
+        .then(data => {
+            resolve(data)
+        }).catch(error => {
+            reject(error);
+        })
+    })
+}
+
+export function bannerListForCode(reqbody){
+    return new Promise((resolve, reject)=>{
+        fetch(config.ROOT_URL+ 'banner/bannerListForCode',{ method: 'POST', data: reqbody})
         .then(data => {
             resolve(data)
         }).catch(error => {

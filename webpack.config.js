@@ -18,7 +18,12 @@ module.exports = {
         target: 'http://localhost:3001/',
         changeOrigin: true,
         pathRewrite: {'^/music' : ''}
-      }
+      },
+      '/nodeApi': {
+        target: 'http://localhost:2019', //http://localhost:2019
+        changeOrigin: true,
+        pathRewrite: {'^/nodeApi' : '/'}
+      },
     }
   },
   plugins: [
@@ -36,7 +41,7 @@ module.exports = {
     new webpack.optimize.SplitChunksPlugin({
       chunks: "all",
       minSize: 20000,
-      minChunks: 2,
+      minChunks: 5,
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
       name: true,
@@ -45,7 +50,7 @@ module.exports = {
             names: ['vendor'],
             filename: 'vendor.js',
             chunks: "all",
-            minChunks: 5
+            minChunks: 30
         }
       }
     }),

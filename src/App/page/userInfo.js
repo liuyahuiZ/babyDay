@@ -59,7 +59,7 @@ class RegistorUser extends Component {
         }).then((res)=>{
             console.log(res);
             if(res.respHead.code=='0000') { 
-                let oldInfo = res.respBody[0]
+                let oldInfo = res.data[0]
                 let birthday = oldInfo.birthday ? oldInfo.birthday.split('-'): [0,0,0];
                 self.setState({
                     infoMation: oldInfo,
